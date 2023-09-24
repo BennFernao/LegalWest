@@ -274,6 +274,29 @@ app.get("/seuslibs", (req, res)=>{
 })
 
 
+app.get("/seujs", (req, res)=>{
+
+    try {
+    
+    let nomesDosArquivos = ""
+    let tipos = ""
+        
+    fs.readdir(__dirname + "/public/js", (err, arquivos)=>{
+
+
+        res.send(arquivos)
+    })
+
+
+
+    } catch (error) {
+
+        res.send([])
+            
+    }
+})
+
+
 
 
 // ??
