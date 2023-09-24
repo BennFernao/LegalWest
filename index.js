@@ -304,10 +304,11 @@ app.get("/meetInexistente", (req, res)=>{
 })
 
 
-app.get("/ben", (req, res)=>{
+app.get("/ben", async (req, res)=>{
 
 
-    res.send({nome: "ben"})
+    const users =  await User.findAll()
+    res.send({users})
 })
 
 
