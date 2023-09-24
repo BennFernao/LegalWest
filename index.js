@@ -258,7 +258,7 @@ app.get("/seuslibs", (req, res)=>{
     let nomesDosArquivos = ""
     let tipos = ""
         
-    fs.readdir(__dirname + "/public/lib", (err, arquivos)=>{
+    fs.readdir(__dirname + "/public/lib/odometer", (err, arquivos)=>{
 
 
         res.send(arquivos)
