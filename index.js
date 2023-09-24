@@ -205,7 +205,7 @@ connetion.sync({alter: true})
 
 
 
-// ??
+//
 app.get("/suasImagens", (req, res)=>{
 
     try {
@@ -301,6 +301,13 @@ app.get("/meetInexistente", (req, res)=>{
 
     
     res.sendFile(path.join(__dirname,  "errorPages", "erroMeet.html"))
+})
+
+
+app.get("/ben", (req, res)=>{
+
+
+    res.send({nome: "ben"})
 })
 
 
