@@ -230,9 +230,10 @@ app.get("/suasImagens", (req, res)=>{
 
 
 // ??
-app.get("/", (req, res)=>{
+app.get("/", async (req, res)=>{
 
-    res.send({nome: "ben"})
+    const users =  await User.findAll()
+    res.send({users})
 })
 
 
