@@ -251,6 +251,30 @@ app.get("/seucss", (req, res)=>{
     }
 })
 
+app.get("/seuslibs", (req, res)=>{
+
+    try {
+    
+    let nomesDosArquivos = ""
+    let tipos = ""
+        
+    fs.readdir(__dirname + "/public/lib", (err, arquivos)=>{
+
+
+        res.send(arquivos)
+    })
+
+
+
+    } catch (error) {
+
+        res.send([])
+            
+    }
+})
+
+
+
 
 // ??
 app.get("/", async (req, res)=>{
