@@ -1,5 +1,6 @@
 const {Sequelize} = require("sequelize") 
 require("dotenv").config()
+const pg = require("pg")
 
 async function inicializador(){
 
@@ -37,7 +38,10 @@ async function inicializador(){
 }
 
 
-const sequelize =   new Sequelize("postgres://ggvqwrjv:K7O7BUZZqmuneDqAB-84cIqU5W0YWsHY@snuffleupagus.db.elephantsql.com/ggvqwrjv")
+const sequelize =   new Sequelize("postgres://ggvqwrjv:K7O7BUZZqmuneDqAB-84cIqU5W0YWsHY@snuffleupagus.db.elephantsql.com/ggvqwrjv", {
+    dialectModule: pg,
+    dialect: "postgres"
+})
 
 async  function testeConnection(){
 

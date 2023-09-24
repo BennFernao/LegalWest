@@ -303,5 +303,5 @@ app.all("*", (req, res)=>{
     res.sendFile(path.join(__dirname, "errorPages", "paginaNaoEncontrada.html"))
 })
 
-const PORTA = process.env.PORT
-server.listen(PORTA, ()=> console.log(`Servidor inicializado na porta ${PORT}`))
+const PORT = process.env.PORT
+server.listen(PORT, ()=> console.log(`Servidor inicializado na porta ${PORT}`))
