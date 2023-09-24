@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+        <!-- Favicon -->
+    <link href="img/logo.png" rel="icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    
+        <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="container" >
+        <div class="border border-primary p-5"  style="margin: 200px; margin-top: 50px; border-radius: 5px;" > 
+            <div class="d-flex justify-content-between align-items-center w-100 " >
+    
+                <h4 style="font-weight: 900;">Seus advogados</h4>
+    
+                <div class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                    Adicionar 
+                    <img src="/img/addIcon.svg" alt="addIcon" style="width: 30px; height: 30px; ">
+                </div>
+    
+            </div>
+    
+            <div id="containerAdvogados" style="min-width: 500px;">
+                <!-- 
+                <div class="d-flex justify-content-between  align-items-center w-100 mt-5 p-2 " style="background-color: #FDFBFB; border-radius: 5px;">
+                    
+                    <div class="mr-2 d-flex   align-items-center">             
+                        <img class="img-fluid mr-3 h-100" src="/img/team-1.jpg" width="90px" style="border-radius: 90px;">
+                    
+                        <div>
+                            <h5 style=" color:#686060;">Ben Fernao</h5>
+                            <p>Atualizado aos 23/06/2022</p>
+                        </div>
+
+                    </div>
+    
+                    <div class="d-flex justify-content-end align-items-center w-25">
+    
+                        <img src="/img/deleteIcon.svg" alt="addIcon" style="width: 25px; height: 25px; margin-right: 15px; ">
+                        <img src="/img/editIcon.svg" alt="addIcon" style="width: 25px; height: 25px; ">
+    
+                    </div>
+    
+                </div>
+                -->
+                
+            </div>
+    
+    
+        </div>
+
+        <p id="loadingItem">Carregando</p> 
+        <div id="row" class="row g-3">
+
+        </div>
+    </div>
+
+  
+  <!-- Modal Editar -->
+  <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar advogado</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="modal-editar" class="modal-body modal-editar p-3">
+
+          <form action="/lawyers/editLawyer/${id}"  method="post" class="formularioAT">
+            <input type="text" name="nome" class="form-control mb-3 nome"  >
+            <input type="text" name="escritotio" class="form-control mb-3  escritorio" >
+            <textarea rows="6" name="descricao" class="w-100 form-control mb-3 descricao"  >
+             
+            </textarea>
+
+            <label class="mb-2"> Mudar a foto do perfil</label>
+            <input type="file" class="form-control mb-3" name="imagem">
+
+          </form>
+   
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-success botaoAtualizar">Atualizar</button>
+        </div>
+
+        <div class="alert alert-primary alerta">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Modal Adicionar -->
+    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Novo Advogado</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="moda" class="modal-body ">
+            
+
+            <form action="#"  method="post" enctype="multipart/form-data" class="formularioAdd">
+              <label>Nome</label>
+              <input type="text" name="nome" class="form-control mb-3" required>
+
+              <label>Escritorio</label>
+              <input type="text" name="escritorio" class="form-control mb-3"required >
+
+              <label>Descricao</label>
+              <textarea rows="6" name="descricao" class="w-100 form-control mb-3"  required>
+                
+              </textarea>
+
+              <label class="mb-2"> Mudar a foto do perfil</label>
+              <input type="file" name="imagem" class="form-control mb-3 " required>
+
+              <button type="button"  class="btn btn-success adicionar" > Adicionar </button>
+              <button id="noDeleteItem" type="button" class="btn btn-danger mr-5" data-bs-dismiss="modal">Cancelar</button>
+              
+
+            </form>
+         
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  
+  <!-- Modal  Deletar-->
+  <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Deletar advogado</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="modal-deletar" class="modal-body ">
+       
+        </div>
+        <div class="modal-footer">
+          <button id="noDeleteItem" type="button" class="btn btn-danger" data-bs-dismiss="modal">Não</button>
+          <button id="deleteItem" type="button" class="btn btn-success" data-bs-dismiss="modal">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+
+        const container = document.getElementById("containerAdvogados")
+        let id_atual = ""
+ 
+
+
+        const botaoAtualizar = document.querySelector(".botaoAtualizar")
+        botaoAtualizar.addEventListener("click", async ()=>{
+
+          let formularioAT = document.querySelector(".formularioAT")
+          formularioAT = new FormData(formularioAT)
+
+          const resposta = await atualizarAdvogado(id_atual, formularioAT)
+          
+          if(!(resposta instanceof Error)){      
+            setTimeout(()=> location.reload(), 1000 )
+          }else{
+
+            const alerta = document.querySelector(".alerta")
+            alerta.innerHTML = "<p> Erro ao editar o advogado, tente novamente </p>"
+
+          }
+
+          async function atualizarAdvogado(idAdvogado, novosDados){
+
+                 const resposta = await  fetch(`../lawyers/editLawyer/${id_atual}`, {
+                      method: "POST",
+                      body: formularioAT 
+
+                      }).then((res)=> res.json())
+                        .then((res)=> res)
+                        .catch((erro)=> new Error("Erro ao buscar dados"))
+
+                return resposta
+          }
+
+        })
+
+        
+        const botaoAdicionar = document.querySelector(".adicionar")
+        botaoAdicionar.addEventListener("click", ()=>{
+
+              let formularioAdd = document.querySelector(".formularioAdd")
+              formularioAdd = new FormData(formularioAdd)
+              
+              fetch("../lawyers/addLawyer", {
+                method: "POST",
+                body: formularioAdd  
+              }).then((res)=> res.json())
+              .then((res)=> {
+
+                console.log(res)
+                 setTimeout(()=> location.reload(), 1000 )
+              })
+              .catch((erro)=> console.log(erro))
+        })
+
+
+
+        function escreverAdvogado(advogado){
+
+            const div_1 = document.createElement("div")
+            div_1.setAttribute("class", "d-flex justify-content-between  align-items-center w-100 mt-5 p-2 ")
+            div_1.style.borderRadius = "5px"
+            div_1.style.backgroundColor = "#FDFBFB"
+
+            const div_1_1 = document.createElement("div")
+            div_1_1.setAttribute("class", "mr-2 d-flex   align-items-center" )
+         
+
+                    const img = document.createElement("img")
+                    img.setAttribute("class", "img-fluid mr-3 h-100")
+                    img.setAttribute("src", `/img/${advogado.urlImagemPerfil}`)
+                    img.style.width = "90px"
+                    img.style.borderRadius  = "90px"
+
+                    div_1_1.appendChild(img)
+
+                    const div_1_1_1 = document.createElement("div")
+
+                        const nome = document.createElement("h5")
+                        nome.innerText = advogado.nome
+
+                        div_1_1_1.appendChild(nome)
+
+                        const dataDeAtuazacao = document.createElement("p")
+                        dataDeAtuazacao.innerText = `atualizado aos ${advogado.updatedAt.slice(0, 10)}, ${advogado.updatedAt.slice(11, 16)}`
+
+                        div_1_1_1.appendChild(dataDeAtuazacao)
+
+                    div_1_1.appendChild(div_1_1_1)
+
+
+                    const div_1_2 = document.createElement("div")
+                    div_1_2.setAttribute("class", "d-flex justify-content-end align-items-center w-25")
+
+                        const img_2 = document.createElement("img")
+                        img_2.setAttribute("class", "img-fluid mr-3 h-100 ")
+                        img_2.setAttribute("src", "/img/editIcon.svg")
+                        img_2.setAttribute("data-bs-toggle", "modal" )
+                        img_2.setAttribute("data-bs-target","#staticBackdrop" )
+                        img_2.setAttribute("cod", advogado.id)
+                        img_2.style.width = "25px"
+                        img_2.style.height = "25px"
+                        img_2.style.cursor = "pointer"
+
+                        
+
+                        img_2.addEventListener("click", ()=>{
+
+                          id_atual = advogado.id
+
+                          const id = img_2.getAttribute("cod")
+
+                          fetch(`../lawyers/lerAdvogado/${id_atual}`, {
+                                  method:"GET",
+                                  credentials:"include",
+                                  headers:{"content-type": "application/json"}
+                              }).then((res)=> res.json())
+                              .then(res=>{
+
+                                console.log(res)
+
+                                const modalEditar = document.getElementById("modal-editar")
+                                const nome = document.querySelector(".nome")
+                                const escritorio = document.querySelector(".escritorio")
+                                const descricao = document.querySelector(".descricao")
+
+                                nome.setAttribute("value", res.nome  ) 
+                                escritorio.setAttribute("value", res.escritorio  ) 
+                                descricao.innerText = res.descricao
+
+                              })
+                              .catch((error)=>{
+
+                                  console.log(error)
+
+                                  deleteLoadingText()
+                                  writeErrorText()
+                              })
+
+
+
+
+
+                        })
+
+                       
+
+
+                        const img_3 = document.createElement("img")
+                        img_3.setAttribute("class", "img-fluid mr-3 h-100")
+                        img_3.setAttribute("src", "/img/deleteIcon.svg")
+                        img_3.setAttribute("data-bs-toggle", "modal" )
+                        img_3.setAttribute("data-bs-target","#staticBackdrop2" )
+                        img_3.style.width = "25px"
+                        img_3.style.height = "25px"
+                        img_3.style.cursor = "pointer"
+                        
+
+
+                        img_3.addEventListener("click", ()=>{
+
+                            id_atual = advogado.id
+
+                            const modal_deletar = document.getElementById("modal-deletar")
+                            
+                            const paragrafo = document.createElement("p")
+                            paragrafo.innerText =  `tem certeza que pretende eliminar o advogado ${advogado.nome} ?`
+
+                            modal_deletar.appendChild(paragrafo)
+
+                            })
+                    
+
+                    div_1_2.appendChild(img_2)
+                    div_1_2.appendChild(img_3)
+
+
+            div_1.appendChild(div_1_1)
+            div_1.appendChild(div_1_2)
+
+            container.appendChild(div_1)
+
+        }
+
+        function deleteLoadingText(){
+            const loadingText = document.getElementById("loadingItem")
+            loadingText.innerText = ""
+            
+        }
+
+
+        function writeErrorText(){
+
+            const loadingText = document.getElementById("loadingItem")
+            loadingText.innerText = "Erro ao carregar os dados, tente novamente, se o erro não se corrigir tente mais tarde"
+
+        }
+
+
+        const deleteItem = document.getElementById("deleteItem")
+        deleteItem.addEventListener("click", ()=>{
+
+        fetch(`/lawyers/deleteLawyer/${id_atual}`, {
+                method:"GET",
+                credentials:"include",
+                headers:{"content-type": "application/json"}
+                
+        }).then((res)=> res.json()) 
+        .then((res)=>{
+            console.log(res)
+            const modal_deletar = document.getElementById("modal-deletar")
+            modal_deletar.innerHTML = ""
+
+            const containerAdvogados = document.getElementById("containerAdvogados")
+            containerAdvogados.innerHTML = ""
+
+            inicializador()
+        })
+    })
+        
+
+        function inicializador(){
+            fetch("/../lawyers/showLawyers", {
+                method:"GET",
+                credentials:"include",
+                headers:{"content-type": "application/json"}
+            }).then((res)=> res.json())
+            .then(res=>{
+
+            
+                deleteLoadingText()
+
+                for (let i = 0; i < res.length; i++) {
+                    
+                    escreverAdvogado(res[i])  
+                }
+            })
+            .catch((error)=>{
+
+                console.log(error)
+
+                deleteLoadingText()
+                writeErrorText()
+            })
+
+        }
+
+        inicializador()
+
+    <!-- Template Javascript -->
+  
+    </script>
+    
+      <!-- JavaScript Libraries -->
+ 
+  
+</body>
+</html>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="utf-8">
+    <title>LegalWest</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/logo.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;500;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+    <script src="https://cdn.tiny.cloud/1/jibv4yow9fhqx8ze1s8j1k9p9eyc92mipsccuuul62v0e9ja/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>  
+
+</head>
+
+<body>
+    <!-- Header Start -->
+    <div class="container-fluid bg-secondary   ">
+        <div class="fixed-top">
+            <div class="row position-relative">
+
+                <div  >
+         
+                   
+                    <nav class="navbar navbar-expand-lg  bg-secondary navbar-light px-3  ">
+                        <!-- Navbar para dispositivos menores (sm)  -->
+
+                        <a href="index.html" class="navbar-brand d-flex d-lg-none">
+                            <img src="/img/logotipo.png" alt="teste" class="img-fluid" width="100px" />              
+                        </a>
+                        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse w-100 " id="navbarCollapse">
+
+                        </div>
+
+                        <!-- Navbar para dispositivos maiores (lg)  -->
+                        
+
+                        
+                    </nav>
+
+                    <div class="row  d-flex-none d-flex-lg justify-content-start align-items-center bg-secondary " >
+
+                      <div class="col-lg-3 pl-5">
+                        <h5 class="text-white fw-bold" style="text-align: center;">Dashboard</h5>
+                      </div>
+
+                      <div class="col-lg-9  " > 
+                          <div class=" d-flex flex-lg-row justify-content-between align-items-between bg-secondary p-4 ">
+                            <a href="/">
+                              <img src="/img/legalwest.png" alt="Logotipo Legalwest" width="90px" >
+                            </a> 
+
+                            
+                            <div >
+                                
+                                  <a href="/user/logout" >
+                                    <button class="btn btn-outline-primary mr-3">
+                                          <div class="d-flex justify-content-center align-items-center">
+                                              
+                                              <img src="/img/logoutCastanho.svg" class="mr-2" width="20px" />
+                                              <span >Logout</span>
+                                          </div>             
+                                    </button>
+                                </a>
+
+                                <a href="/">
+                                  <button class="btn btn-outline-primary mr-3">
+                                        <div class="d-flex justify-content-center align-items-center">
+                                            
+                                            <img src="/img/homeCastanho.svg" class="mr-2" width="20px" />
+                                            <span >Home</span>
+                                        </div>             
+                                  </button>
+                              </a>
+
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+
+                <div class="row bg-secondary" style="height: auto;"> 
+                    <div class="col-lg-3 pl-5 pb-2 pr-2 bg-secondary   " style="border-radius: 2px; "> 
+
+                        <div  class="p-3" >   
+                            <div class="d-flex  flex-column justify-content-center align-items-center mb-3">
+                                    
+                                    <img src="/img/userW.svg"  width="70px" />
+                                    <span class="username tw-600 text-white fw-bold"></span>
+
+                                    <span class="text-white">Olá, prazer</span>
+                            </div>   
+                            
+                            <div class="divDeNavegacao" style="background-color: inherit;">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-9 p-5 w-100 " style="border-radius: 20px; background-color: #ffffff;overflow-y: scroll;height: 90vh; "> 
+
+                        <!--Div Dos DADOS PESSOAIS-->
+
+                        <div class="dadosDoUser" style="display: block; ">
+                            <div class="mb-3 d-flex justify-content-between align-items-center w-100">
+                                <h5 >Dados Pessoais</h5>
+                            </div>
+
+                           
+
+                            <p class="text-black-50 fw-semibold">Nome Completo: <span class="nome"> </span></p>
+                            <p class="text-black-50 fw-semibold">Email : <span class="email"></span></p>
+                            <p class="text-black-50 fw-semibold">Telefone : <span class="telefone"></span></p>
+
+                            <div class="mt-5">
+
+                              <div class="mb-3 d-flex justify-content-between align-items-center w-100">
+                                  <h5 >Alterar Dados</h5>
+                              </div>
+    
+                              <div data-bs-toggle="modal" data-bs-target="#staticBackdrop5" class="pl-4 py-2 w-50 d-flex  mb-3 flex-row justify-content-between align-items-center" style="background-color: #EDE1CD;vertical-align: center; border-radius: 5px;cursor: pointer;">
+                                
+                                <span  >
+                                  Alterar dados pessoais
+                                </span>
+                                <img src="/img/go.svg" />
+                              </div>
+                              
+    
+                              <div data-bs-toggle="modal" data-bs-target="#staticBackdrop6" class="pl-4 py-2 w-50 d-flex  flex-row justify-content-between align-items-center" style="background-color: #EDE1CD;vertical-align: center; border-radius: 5px;cursor: pointer;">
+                                <span>
+                                  Alterar senha
+                                </span>
+                                <img src="/img/go.svg" />
+                              </div>
+    
+                              
+                            </div>
+                            
+                         
+
+
+                        </div>
+
+
+
+                        <p class="alertaDadosDoUser"> </p>
+
+
+                        <!--Div Históricos -->
+                        <div class="dadosDoHistorico" style="display: none; "> 
+
+                          <div class="mb-5">
+                              <h5 class="mb-5" >Meu historico</h5>
+                              <div class="meuHistorico" style="margin-top: 30px; width: 100%;">
+
+                              </div>
+                          </div>
+
+                        
+
+                         
+                        </div>
+
+                        <!--Div Das Consultas-->
+                        
+                          <div class="dadosDaConsulta " style="display: none;padding-bottom: 200px;height: auto;"> 
+                              <div class="d-flex justify-content-between mb-5 " style="height: auto;">
+                                  <h5 class="fw-bold">Consultas da legalwest</h5>
+                              </div>
+
+                              <div class="mb-5" style="height: auto;">
+                                  <h5 class=" " >Novas consultas</h5>
+                                  <div class="minhasConsultas" style="margin-top: 30px;">
+
+                                  </div>
+                              </div>
+
+ 
+            
+                          </div>
+
+                   
+
+
+
+                        <div class="dadosDoAdvogado " style="display: none; height: auto; ">
+
+                            <div class="w-100"  style="margin-top: 20px; " > 
+                                <div class="d-flex justify-content-between align-items-center w-100 " >
+                        
+                                    <h5 >Advogados Registado</h5>
+                        
+
+                        
+                                </div>
+                        
+                                <div id="containerAdvogados" style="min-width: 500px;">
+                                    <!-- 
+                                    <div class="d-flex justify-content-between  align-items-center w-100 mt-5 p-2 " style="background-color: #FDFBFB; border-radius: 5px;">
+                                        
+                                        <div class="mr-2 d-flex   align-items-center">             
+                                            <img class="img-fluid mr-3 h-100" src="/img/team-1.jpg" width="90px" style="border-radius: 90px;">
+                                        
+                                            <div>
+                                                <h5 style=" color:#686060;">Ben Fernao</h5>
+                                                <p>Atualizado aos 23/06/2022</p>
+                                            </div>
+                    
+                                        </div>
+                        
+                                        <div class="d-flex justify-content-end align-items-center w-25">
+                        
+                                            <img src="/img/deleteIcon.svg" alt="addIcon" style="width: 25px; height: 25px; margin-right: 15px; ">
+                                            <img src="/img/editIcon.svg" alt="addIcon" style="width: 25px; height: 25px; ">
+                        
+                                        </div>
+                        
+                                    </div>
+                                    -->
+                                    
+                                </div>
+                        
+                        
+                            </div>
+
+                        </div>
+
+                        <!--Div Das Especialidades -->
+                        <div class="dadosDaEspecialidades " style="display: none; height: auto; ">
+
+                            <div class="w-100"  style="margin-top: 20px; " > 
+                                <div class="d-flex justify-content-between align-items-center w-100 mb-5 " >
+                        
+                                    <h5>Especialidades da LegalWest</h5>
+                        
+                                    <div class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#staticBackdrop7">
+                                        Adicionar 
+                                        <img src="/img/addIcon.svg" alt="addIcon" style="width: 30px; height: 30px; ">
+                                    </div>
+                        
+                                </div>
+                        
+                                <div id="containerEspecialidades" class=" w-100" >
+                                                                        
+                                </div>
+                        
+                        
+                            </div>
+
+                        </div>
+
+                        <div class="dadosDoPost" style="display: none;height:auto  ">
+                            
+                            <div class="dadosCriarPost">
+                                <div class="mb-5"> 
+
+
+                                                                                            
+                                        <div class="d-flex justify-content-between " style="margin-top: 20px; ">
+                                            <h5 >Escreva o seu post </h5>
+                                            <div class="d-flex justify-content-start  ">
+                                                <button class="btn btn-outline-primary mr-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop14">Ver meus uploads</button>
+                                                <button class="btn btn-outline-primary " data-bs-toggle="modal" data-bs-target="#staticBackdrop14">Ver artigos</button>
+                                            </div>
+
+                                            
+                                        </div>
+                                                    
+                                    <form action="../posts/addPost" method="POST"  class="mt-3 mb-5 htmlTyni "  id="formPost" enctype="multipart/form-data">   
+                                    
+                                                <textarea class="textarea" name="html" id="html"  required>
+                                                    
+                                                </textarea>
+                                    
+                                    
+                                                <h4 style="margin-top: 100px;">Catalogue o seu post</h4>
+                                                                           
+                                    
+                                    
+                                                <label class="form-label d-block">Titulo do post</label>
+                                                <input name="titulo" type="text" class="form-control" id="titulo" required>
+                                        
+                                                <label class="form-label mt-3">Descricao</label>
+                                                <input name="descricao" type="text" class="form-control" id="descricao" required >
+                                        
+                                    
+                                        
+                                                <label class="form-label mt-3 d-block">Imagem de capa</label>
+                                                <input name="imagem" type="file" class="form-control" id="imagem" required>
+                                        
+                                                <input  type="submit" value="Salvar" class="w-100  btn btn-primary mt-5" >
+                                    
+                                    </form>
+                                </div>
+                        
+                            
+                                <div id="alerta " class="d-none">
+                                
+                                </div>
+                        </div>     
+                        </div>
+ 
+                    </div>
+
+                </div>
+               
+            </div>
+        </div>
+    </div>
+
+  <!--Modal Arquivos-->
+
+ <div class="modal fade " id="staticBackdrop14" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title fs-5" id="staticBackdropLabel">Seus Arquivos</h4>
+          <button id="close" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+        </div>
+        
+        <label for="arquivoUpload" class="btn btn-primary d-block" id="botaoAdicionarArquivo">Adicionar arquivo</label>
+        <div id="modal-uploads" class="modal-body modal-editar p-3">
+
+     
+          <input type="file" id="arquivoUpload" name="arquivoUpload" style="display: none;">
+
+
+   
+        </div>
+
+
+        <div class="alert alert-primary alertaModalUser" style="display: none;">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <!--Modal editar Dados do usuário ok-->
+
+ <div class="modal fade " id="staticBackdrop5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Meus Dados</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="modal-editar" class="modal-body modal-editar p-3">
+
+          <form action="#"   class="formularioAT">
+            <label>Nome</label>
+            <input type="text" name="nome" class="form-control mb-3 nomeModalUser"  >
+
+            <label>Sobrenome</label>
+            <input type="text" name="sobrenome" class="form-control mb-3  sobrenomeModalUser" >
+
+            <label>Email</label>
+            <input type="text" name="email" class="form-control mb-3  emailModalUser" >
+
+            <label>Telefone</label>
+            <input type="text" name="telefone" class="form-control mb-3  telefoneModalUser" >
+
+          </form>
+   
+        </div>
+        <div class="modal-footer justify-content-end align-items-center">
+
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary botaoAtualizarDadosDoUsuario">Atualizar</button>
+        </div>
+
+        <div style="padding: 4px;"> 
+          <div class="alert alert-primary alertaModalUser" style="display: none;">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+   <!--Modal editar Nome da especialidade ok-->
+
+ <div class="modal fade " id="staticBackdrop8" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Dados da Especialidade</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="modal-editar" class="modal-body modal-editar p-3">
+
+          <form action="#"  >
+            <label>Nome da especialidade atual </label>
+            <input type="text" name="nome" class="form-control mb-3 nomeDaEspecialidadeAtual" readonly  >
+
+            <label>Novo Nome da especialidade</label>
+            <input type="text" name="nome" class="form-control mb-3 novoNomeDaEspecialidade"  >
+
+          </form>
+   
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary botaoAtualizarEspecialidade">Atualizar</button>
+        </div>
+
+        <div class="alert  alertaModalSenha" style="display: none;">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ <!--Modal editar Senha do usuário ok-->
+
+ <div class="modal fade " id="staticBackdrop6" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar Meus Dados</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="modal-editar" class="modal-body modal-editar p-3">
+
+          <form action="#"   class="formularioAT">
+            <label>Senha Atual</label>
+            <input type="password" name="nome" class="form-control mb-3 senhaAtualUser"  >
+
+            <label>Senha Nova</label>
+            <input type="password" name="sobrenome" class="form-control mb-3  novaSenhaUser" >
+
+          </form>
+   
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary botaoAtualizarSenhaDoUsuario">Atualizar</button>
+        </div>
+
+        <div style="padding: 8px;">
+            <div class="alert  alertaModalSenha " style="display: none; ">
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+      <!-- Modal Editar advogado-->
+    <div class="modal fade " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Editar advogado</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="modal-editar" class="modal-body modal-editar p-3">
+
+            <form action="/lawyers/editLawyer/${id}"  method="post" class="formularioAT">
+              <input type="text" name="nome" class="form-control mb-3 nomeAdvogado"  >
+              <input type="text" name="escritotio" class="form-control mb-3  escritorio" >
+              <textarea rows="6" name="descricao" class="w-100 form-control mb-3 descricao"  >
+              
+              </textarea>
+
+              <label class="mb-2"> Mudar a foto do perfil </label>
+              <input type="file" class="form-control mb-3" name="imagem">
+
+            </form>
+    
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary botaoAtualizar">Atualizar</button>
+          </div>
+
+          <div class="alert alert-primary alerta">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Modal Adicionar nova especialidade ok-->
+      <div class="modal fade" id="staticBackdrop7" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Nova Especialidade</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="moda" class="modal-body ">
+              
+  
+              <form>
+                <label>Nome</label>
+                <input type="text" name="nome" class="form-control mb-3 nomeDaEspecialidade" required>
+                <small class="form-text mb-5">insira o nome da nova especialidade</small>
+  
+  
+                <div class="d-flex justify-content-end align-items-center mt-3 mb-3">
+                  <button id="noDeleteItem2" type="button" class="btn btn-outline-primary mr-3" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button"  class="btn btn-primary adicionarEspecialidade" > Adicionar </button>
+                </div>
+
+
+                <div class="alertaEspecialidade">
+
+                </div>
+                
+  
+              </form>
+           
+            </div>
+  
+          </div>
+        </div>
+      </div>
+
+
+
+    <!-- Modal Adicionar novo advogado -->
+
+    <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Adicionar Novo Advogado</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div id="moda" class="modal-body">
+
+            <form action="#"  method="post" enctype="multipart/form-data" class="formularioAdd">
+              <label>Nome</label>
+              <input type="text" name="nome" class="form-control mb-3" required>
+
+              <label>Escritorio</label>
+              <input type="text" name="escritorio" class="form-control mb-3"required >
+
+              <label>Descricao</label>
+              <textarea rows="6" name="descricao" class="w-100 form-control mb-3"  required>
+                
+              </textarea>
+
+              <label class="mb-2"> Mudar a foto do perfil</label>
+              <input type="file" name="imagem" class="form-control mb-3 " required>
+
+              <div class="d-flex justify-content-end align-items-center"> 
+                
+                <button id="noDeleteItem2" type="button" class="btn btn-outline-primary mr-3" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button"  class="btn btn-primary adicionar" > Adicionar </button>
+              </div>
+
+            </form>
+         
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+
+
+    <!-- Modal  Ver dados ok-->
+  <div class="modal fade" id="staticBackdrop11" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Advogados Especializados</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div  class="modal-body  conteudoAvogadosEspecializados">
+       
+        </div>
+        <div class="modal-footer">
+            <div class="alertaAdvogadosEspecializados">
+
+            </div>
+            <div class="d-flex justify-content-end align-items-center"> 
+              <button  type="button" class="btn btn-outline-primary mr-3" data-bs-dismiss="modal">Não</button>
+              <button  type="button" class="btn btn-primary " id="atualizarAdvogadosEspecializados" >Sim</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+      <!-- Modal  Deletar ok-->
+  <div class="modal fade" id="staticBackdrop10" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Deletar advogado</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div  class="modal-body  divEliminarEspecialidade">
+       
+        </div>
+        <div class="modal-footer">
+          <button  type="button" class="btn btn-outline-primary mr-3" data-bs-dismiss="modal">Não</button>
+          <button  type="button" class="btn btn-primary botaoDeletarEspecialidade" data-bs-dismiss="modal">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal  Deletar Advogado-->
+  <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Deletar advogado</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="modal-deletar" class="modal-body ">
+       
+        </div>
+        <div class="modal-footer d-flex justify-content-end align-items-center">
+          <button id="noDeleteItem" type="button" class="btn btn-outline-primary mr-3" data-bs-dismiss="modal">Não</button>
+          <button id="deleteItem" type="button" class="btn btn-primary" data-bs-dismiss="modal">Sim</button>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+
+    <!-- Modal Adicionar User Admin -->
+    <div class="modal fade" id="staticBackdrop4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-2" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Defina os dados do user</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div id="modal-user" class="modal-body ">
+              
+  
+              <form action="#"  method="post" enctype="multipart/form-data" class="formularioAdd">
+                <label>Nome</label>
+                <input type="text" name="nome" class="form-control mb-3 nomeUser" required>
+  
+                <label>Sobrenome</label>
+                <input type="text" name="escritorio" class="form-control mb-3 sobrenomeUser"required >
+
+                <label>Email</label>
+                <input type="text" name="nome" class="form-control mb-3 emailUser" required>
+  
+                <label>Telefone</label>
+                <input type="text" name="escritorio" class="form-control mb-3 telefoneUser"required >
+
+  
+  
+                <div>
+                  <button id="noDeleteItem" type="button" class="btn btn-outline-primary mr-3" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button"  class="btn btn-primary criarConta " > Adicionar </button>
+                </div>
+              </form>
+           
+            </div>
+  
+          </div>
+        </div>
+    </div>
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary px-3 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+   
+
+    <!-- JavaScript Libraries -->
+ 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+
+    <script src="/js/uploadMultimedia.js" type="text/javascript"></script>
+    <script src="/js/user1/user.js" type="text/javascript"></script>
+    <script src="/js/user1/consulta.js" type="text/javascript"></script>
+    <script src="/js/user1/historico.js" type="text/javascript"></script>
+    <script src="/js/user1/navegacao.js" type="text/javascript"></script>
+    
+
+</body>
+
+</html>
+

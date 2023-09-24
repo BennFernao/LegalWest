@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Legalwest | Admin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/logo.png" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto:wght@300;500;700&display=swap" rel="stylesheet"> 
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+    <div class="w-100 d-flex justify-content-center align-items-center mt-5" style="height: auto;">
+            
+                
+                <form action="#"  style="width: auto">
+                        <div class="w-100 d-flex justify-content-center align-items-center">
+                            <img src="/img/logotipo.png"   width="150px"/>
+                        </div>
+                        
+                        <h1 class="text-center text-dark">Crie a sua conta</h1>
+
+                        <div class="d-flex justify-content-center align-items-center mt-5">
+                            
+                            <div class="h-100"> 
+                                <input name="username" class="form-control nome"  type="text"  style="width: 350px;" placeholder="nome">
+                                <p class="infoNome"></p>
+                             </div>
+
+                            <div class="h-100">
+                                <input name="username" class="form-control  ml-5 sobrenome"  type="text"  style="width: 350px;" placeholder="sobrenome">
+                                <p class="infoSobrenome ml-5"></p>
+                            </div>
+                            
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center mt-5">
+                            
+                            <input name="username" class="form-control email"  type="text"  style="width: 350px;" placeholder="email">
+
+                            
+                            <input name="username" class="form-control  ml-5 telefone"  type="text"  style="width: 350px;" placeholder="telefone">
+                        </div>
+
+                        <div class="d-flex justify-content-center align-items-center mt-5">
+                            
+                            <input name="senha" class="form-control senha"  type="password"  style="width: 350px;" placeholder="senha">
+
+                            
+                            <input name="confirmeSenha" class="form-control  ml-5 confirmarSenha"  type="password"  style="width: 350px;" placeholder="confirme a senha">
+                        </div>
+
+
+
+                    <div class="w-100 d-flex mt-5" >
+                            <button class="btn btn-primary w-100 criarConta">Criar conta</button>
+                    </div>
+                    <div class="alerta">
+
+                    </div>
+                    <p class="mt-3 text-center"> Já possui uma conta ? <a href="/user/login"> Faça o Login </a></p>
+                </form>
+            
+    </div>
+
+
+
+
+
+
+    <!-- JavaScript Libraries -->
+ 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+
+
+    <script>
+        
+        const botaoEnviar = document.querySelector(".criarConta")
+        const alerta = document.querySelector(".alerta")
+
+        botaoEnviar.addEventListener("click", async (e)=>{
+            e.preventDefault()
+            const nome = document.querySelector(".nome").value
+            const sobrenome = document.querySelector(".sobrenome").value
+            const email = document.querySelector(".email").value
+            const telefone = document.querySelector(".telefone").value
+            const senha = document.querySelector(".senha").value
+            const confirmaoSenha = document.querySelector(".confirmarSenha").value
+
+
+  
+            
+            if(nome && sobrenome && email && telefone && senha && confirmaoSenha){
+
+                if(senha == confirmaoSenha){
+
+                    const resposta =  await fetch("/user/adicionarUser", {
+                        method: "POST",
+                        body: JSON.stringify({
+                            nome,
+                            sobrenome,
+                            telefone,
+                            email,
+                            senha
+                        }),
+                        headers: {"content-type":"application/json"}
+                    }).then((res)=> res.json())
+                    .catch((error)=> ["erro", "erro não ao enviar os dados"])
+
+                    if(resposta[0] == "erro"){
+
+                        alerta.innerText = resposta[1]
+                        alerta.className = "alert alert-danger mt-3 text-center"
+
+                    }else{
+
+                        alerta.innerText = "autenticação feita com sucesso"
+                        alerta.className = "alert alert-success text-center"
+
+                        setTimeout(()=>{
+                            location.href = "/user/dashboard"
+                        }, 1000)
+                    }
+
+                }else{
+                        alerta.innerText = "Senhas não são identicas"
+                        alerta.className = "alert alert-danger mt-3 text-center"
+                    }
+
+            }else{
+
+                alerta.innerText = "Dados imcompletos"
+                alerta.className = "alert alert-danger mt-3 text-center"
+            }
+        })
+
+
+        const nome = document.querySelector(".nome")
+        const sobrenome = document.querySelector(".sobrenome")
+        const email = document.querySelector(".email")
+        const telefone = document.querySelector(".telefone")
+        const senha = document.querySelector(".senha")
+        const confirmaoSenha = document.querySelector(".confirmarSenha")
+
+        // nome
+        nome.addEventListener("input", (e)=>{
+
+            console.log(e.value)
+            const infoNome = document.querySelector(".infoNome")
+            nome.setAttribute("class", "form-control nome mt-4 ")
+            infoNome.innerHTML = "<p> informe o seu nome </p>"
+        })
+        nome.addEventListener("change", (e)=>{
+
+            console.log(e.value)
+            const infoNome = document.querySelector(".infoNome")
+            infoNome.innerHTML = ""
+        })
+
+
+        // sobrenome 
+        sobrenome.addEventListener("input", (e)=>{
+
+        console.log(e.value)
+        const infoSobrenome = document.querySelector(".infoSobrenome")
+        sobrenome.setAttribute("class", "form-control nome mt-4 ml-5 sobrenome")
+        infoSobrenome.innerHTML = "<p> informe o seu sobrenome </p>"
+        })
+
+        sobrenome.addEventListener("change", (e)=>{
+
+        
+        const infoSobrenome = document.querySelector(".infoSobrenome")
+        infoSobrenome.innerHTML = ""
+        })
+
+    </script>
+</body>
+
+</html>

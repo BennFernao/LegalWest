@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta digital</title>
+    <link href="/css/videoCallPageStyle.css" rel="stylesheet" type="text/css" >
+</head>
+
+<body >
+    
+
+
+    <div  id="videoContainer"  >
+           
+    </div>
+
+
+  
+    
+    <div id="divNomeDoCliente" style=" width:150px; background-color:  black;border-radius: 10px; padding: 5px; position: fixed;left: 5px;top:5px">
+        <p  style="color:#D3EFF8;text-align: center;">Carregando</p>
+    </div> 
+    
+
+    <div class="flexDiv flexCentralizada"  >
+        <p id="textDivOtherParticipant">Aguarde pelo outro participante</p>
+    </div>
+  
+
+    <div class="flexDiv flexCentralizada" style="position: relative;" id="divOpcoesDeChamada">
+        <div style="display: flex; flex-direction: column; position:fixed; bottom: 20px;">
+            <div class="flexDiv flexCentralizada " style="background-color: #D3EFF8;padding: 5px; border-radius: 5px; margin-bottom: 25px; "  >
+
+                <div class=" margemElementar flexCentralizada divOpcaoDeTerminarChamada"  id="leaveBtn">
+                    <img src="/img/iconChamada.svg" class="icon" />
+                </div>
+                
+
+                <div class="divOpcaoDeChamada margemElementar flexCentralizada " id="toggleMicBtn">
+                    <img src="/img/iconAudio.svg" class="icon" id="toggleMicIcon"/>
+                </div>
+
+                <div class="divOpcaoDeChamada margemElementar flexCentralizada " id="toggleWebCamBtn">
+                    <img src="/img/iconVideocam.svg" class="icon" id="toggleWebCamIcon"/>
+                </div>
+                
+            </div>
+            <div class="flexDiv flexCentralizada ">
+
+
+                <div class="margemElementar divDeOpcoesDeTela "  id="participantLocalContainer">
+
+                
+                    
+                </div>
+
+            </div>
+
+            <div class="flexDiv flexCentralizada" >
+                <p id="textDiv" ></p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="flexDiv flexCentralizada"  >
+        <p id="textoDeAviso"></p>
+    </div>
+
+
+    <script src="https://sdk.videosdk.live/js-sdk/0.0.63/videosdk.js"></script>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    
+
+   
+    <script>
+
+                // Elementos do dom que permitem algumas ações
+
+       const joinButton = document.getElementById("joinBtn");
+       const leaveButton = document.getElementById("leaveBtn");
+       const toggleMicButton = document.getElementById("toggleMicBtn");
+       const toggleWebCamButton = document.getElementById("toggleWebCamBtn");
+       const createButton = document.getElementById("createMeetingBtn");
+       const textDiv = document.getElementById("textDiv");
+       const divNomeDoCliente = document.getElementById("divNomeDoCliente")
+       const textDivOtherParticipant = document.getElementById("textDivOtherParticipant")
+
+       const videoContainer = document.getElementById("videoContainer");
+       const divParticipantLocal = document.getElementById("participantLocalContainer")
+       const divOpcoesDeChamada = document.getElementById("divOpcoesDeChamada")
+       const textoDeAviso = document.getElementById("textoDeAviso")
+      
+
+
+       const toggleMicIcon = document.getElementById("toggleMicIcon")
+       const toggleWebCamIcon = document.getElementById("toggleWebCamIcon")
+
+        const socket = io()
+
+        socket.on("connect_error", (err)=>{
+
+                    videoContainer.style.display = "none"
+                    divParticipantLocal.style.display = "none"
+                    textDivOtherParticipant.style.display = "none"
+                    divOpcoesDeChamada.style.display = "none"
+                    divNomeDoCliente.style.display = "none"
+                    textoDeAviso.innerText = err.message
+                    document.querySelector("body").style.display = "block"
+
+                    console.log(err.message)
+                })
+
+     socket.on("connect", ()=>{
+
+        // leave Meeting Button Event Listener
+        document.querySelector("body").style.display = "block"
+        leaveButton.addEventListener("click", async () => {
+
+            
+            meeting?.leave();
+            videoContainer.style.display = "none";
+            
+            });
+
+
+   
+
+       const TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlrZXkiOiI5MmI1ZjEyNC0xMDEyLTRhYjItODk3Zi0yM2UwMjdlNmZmNjIiLCJwZXJtaXNzaW9ucyI6WyJhbGxvd19qb2luIl0sImlhdCI6MTY5MzI0OTU3NSwiZXhwIjoxODUxMDM3NTc1fQ.0l70V0QNCrhpNpGJ3pe2qOKQE7w81tJyh3cug0dh_Z8";
+
+       // Variaveis úteis para a reunião
+
+       let meeting = null;
+       let meetingId = "";
+       let isMicOn = false;
+       let isWebCamOn = false;
+       let name = ""
+
+
+
+        async function inicializar(){
+               
+               textDiv.textContent = "Carregando...";
+
+               const url = `https://api.videosdk.live/v2/rooms`;
+               const options = {
+                   method: "POST",
+                   headers: { Authorization: TOKEN, "Content-Type": "application/json" },
+               };
+
+               const { roomId } = await fetch(url, options)
+                   .then(async (response) => {
+
+                   const res = await  response.json()
+                   console.log(res)
+                   
+                   
+                   return res})
+                   .catch((error) => alert("error", error));
+                   console.log(roomId)
+
+                   meetingId = "sg0o-x3de-vo8t";
+                   initializeMeeting();
+
+                }
+
+                inicializar()
+
+      
+
+       // Initialize meeting
+       function initializeMeeting() {
+
+                window.VideoSDK.config(TOKEN);
+
+                meeting = window.VideoSDK.initMeeting({
+                    meetingId: meetingId, // required
+                    name : "ben", // required
+                    micEnabled: true, // optional, default: true
+                    webcamEnabled: true, // optional, default: true
+                });
+
+
+                meeting.join();
+
+                // creating local participant
+               
+                createLocalParticipant();
+
+                
+
+                // setting local participant stream
+                meeting.localParticipant.on("stream-enabled", (stream) => {
+                    setTrack(stream, null, meeting.localParticipant, true);
+                });
+
+                meeting.on("meeting-joined", () => {
+                    textDiv.textContent = null;
+
+                 
+                });
+
+                meeting.on("meeting-left", () => {
+                    videoContainer.innerHTML = "";
+                });
+
+                //  participant joined
+                meeting.on("participant-joined", (participant) => {
+
+
+                    textDivOtherParticipant.innerHTML = ""
+
+                    let videoElement = createVideoElement(
+                    participant.id,
+                    participant.displayName,
+                    false
+                    );
+                    let audioElement = createAudioElement(participant.id);
+
+                    participant.on("stream-enabled", (stream) => {
+                    setTrack(stream, audioElement, participant, false);
+                    });
+                    videoContainer.appendChild(videoElement);
+                    videoContainer.appendChild(audioElement);
+
+                });
+
+                // participants left
+                meeting.on("participant-left", (participant) => {
+                    let vElement = document.getElementById(`f-${participant.id}`);
+                    vElement.remove(vElement);
+
+                    let aElement = document.getElementById(`a-${participant.id}`);
+                    aElement.remove(aElement);
+                });
+                }
+
+       // creating video element
+       function createVideoElement(pId, name, local) {
+
+            let videoFrame = document.createElement("div");
+            videoFrame.setAttribute("id", `f-${pId}`);
+            videoFrame.setAttribute("width", "100%");
+            videoFrame.setAttribute("height", "100%")
+
+            
+
+            //create video
+            let videoElement = document.createElement("video");
+            videoElement.classList.add("video-frame");
+            videoElement.setAttribute("id", `v-${pId}`);
+            videoElement.setAttribute("playsinline", true);
+            videoElement.setAttribute("width", "100%");
+            videoElement.setAttribute("height", "100%")
+            videoFrame.appendChild(videoElement);
+
+            let displayName = document.createElement("div");
+            displayName.style.display = "flex"
+            displayName.style.flexDirection = "row"
+            displayName.style.justifyContent = "center"
+            displayName.style.alignItems = "center"
+
+            if(local){
+                displayName.innerHTML = `${name}`;
+            }else{
+                divNomeDoCliente.innerText = `${name}`;
+            }
+            
+
+            videoFrame.appendChild(displayName);
+            return videoFrame;
+        }
+
+       // creating audio element
+       function createAudioElement(pId) {
+
+           let audioElement = document.createElement("audio");
+           audioElement.setAttribute("autoPlay", "false");
+           audioElement.setAttribute("playsInline", "true");
+           audioElement.setAttribute("controls", "false");
+           audioElement.setAttribute("id", `a-${pId}`);
+           audioElement.style.display = "none";
+
+           return audioElement;
+       }
+
+       // creating local participant
+       function createLocalParticipant() {
+        
+           let localParticipant = createVideoElement(
+               meeting.localParticipant.id,
+               "Você",
+               true
+           );
+           divParticipantLocal.appendChild(localParticipant);
+           console.log("criado o participante local")
+       }
+
+       // setting media track
+       function setTrack(stream, audioElement, participant, isLocal) {
+       
+       if (stream.kind == "video") {
+           isWebCamOn = true;
+           const mediaStream = new MediaStream();
+           mediaStream.addTrack(stream.track);
+           let videoElm = document.getElementById(`v-${participant.id}`);
+           videoElm.srcObject = mediaStream;
+           videoElm
+           .play()
+           .catch((error) =>
+               console.error("videoElem.current.play() failed", error)
+           );
+       }
+
+       if (stream.kind == "audio") {
+           if (isLocal) {
+           isMicOn = true;
+           } else {
+           const mediaStream = new MediaStream();
+           mediaStream.addTrack(stream.track);
+           audioElement.srcObject = mediaStream;
+           audioElement
+               .play()
+               .catch((error) => console.error("audioElem.play() failed", error));
+           }
+       }
+       }
+
+
+
+       // Toggle Mic Button Event Listener
+       toggleMicButton.addEventListener("click", async () => {
+           if (isMicOn) {
+               // Disable Mic in Meeting
+               meeting?.muteMic();
+               toggleMicIcon.src = "/img/mic_off.svg"
+           } else {
+               // Enable Mic in Meeting
+               meeting?.unmuteMic();
+               toggleMicIcon.src = "/img/iconAudio.svg"
+           }
+           isMicOn = !isMicOn;
+       });
+
+       // Toggle Web Cam Button Event Listener
+       toggleWebCamButton.addEventListener("click", async () => {
+           if (isWebCamOn) {
+               // Disable Webcam in Meeting
+               meeting?.disableWebcam();
+               toggleWebCamIcon.src = "/img/videocam_off.svg"
+
+               let vElement = document.getElementById(`f-${meeting.localParticipant.id}`);
+               vElement.style.display = "none";
+
+           } else {
+               // Enable Webcam in Meeting
+               meeting?.enableWebcam();
+               toggleWebCamIcon.src = "/img/iconVideocam.svg"
+
+               let vElement = document.getElementById(`f-${meeting.localParticipant.id}`);
+               vElement.style.display = "inline";
+           }
+           isWebCamOn = !isWebCamOn;
+       });
+
+
+    })
+    </script>
+    
+</body>
+
+
+</html>
