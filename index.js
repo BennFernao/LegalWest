@@ -297,6 +297,29 @@ app.get("/seujs", (req, res)=>{
 })
 
 
+app.get("/js/:nome", (req, res)=>{
+    const nome = req.params.nome
+
+    try {
+    
+            let nomesDosArquivos = ""
+            let tipos = ""
+            
+                
+            fs.readFile(__dirname + `/public/${nome}`, (err, arquivos)=>{
+        
+                res.send(arquivos)
+            })
+    
+    
+        } catch (error) {
+    
+             res.send([])              
+        }
+
+
+})
+
 
 
 // ??
