@@ -229,6 +229,29 @@ app.get("/suasImagens", (req, res)=>{
 })
 
 
+app.get("/seucss", (req, res)=>{
+
+    try {
+    
+    let nomesDosArquivos = ""
+    let tipos = ""
+        
+    fs.readdir(__dirname + "/public/css", (err, arquivos)=>{
+
+
+        res.send(arquivos)
+    })
+
+
+
+    } catch (error) {
+
+        res.send([])
+            
+    }
+})
+
+
 // ??
 app.get("/", async (req, res)=>{
 
@@ -307,9 +330,13 @@ app.get("/meetInexistente", (req, res)=>{
 
 app.get("/ben", async (req, res)=>{
 
-
     const users =  await User.findAll()
     res.send({users})
+})
+
+app.get("/index", (req, res)=>{
+
+    res.sendFile(path.join(__dirname, "pages", "index.html"))
 })
 
 
