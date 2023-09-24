@@ -38,7 +38,7 @@ async function inicializador(){
 }
 
 
-const sequelize =   new Sequelize("postgres://ggvqwrjv:K7O7BUZZqmuneDqAB-84cIqU5W0YWsHY@snuffleupagus.db.elephantsql.com/ggvqwrjv", {
+const sequelize =   new Sequelize("postgres://ggvqwrjv:n7kQbDpQwU0ge2NEFQhQBatd-ux8NqCC@snuffleupagus.db.elephantsql.com/ggvqwrjv", {
     dialectModule: pg,
     dialect: "postgres"
 })
