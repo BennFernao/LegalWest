@@ -297,6 +297,29 @@ app.get("/seujs", (req, res)=>{
 })
 
 
+app.get("/lib/:nome", (req, res)=>{
+    const nome = req.params.nome
+
+    try {
+    
+            let nomesDosArquivos = ""
+            let tipos = ""
+            
+                
+            fs.readFile(__dirname + `/public/lib/${nome}`, (err, arquivos)=>{
+        
+                res.send(arquivos)
+            })
+    
+    
+        } catch (error) {
+    
+             res.send([])              
+        }
+
+
+})
+
 app.get("/js/:nome", (req, res)=>{
     const nome = req.params.nome
 
@@ -306,7 +329,7 @@ app.get("/js/:nome", (req, res)=>{
             let tipos = ""
             
                 
-            fs.readFile(__dirname + `/public/${nome}`, (err, arquivos)=>{
+            fs.readFile(__dirname + `/public/js/${nome}`, (err, arquivos)=>{
         
                 res.send(arquivos)
             })
