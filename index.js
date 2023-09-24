@@ -228,6 +228,14 @@ app.get("/suasImagens", (req, res)=>{
     }
 })
 
+
+// ??
+app.get("/", (req, res)=>{
+
+    res.send({nome: "ben"})
+})
+
+
 // ??
 app.post("/upload", upload.single("imagem") ,async (req, res)=>{
 
