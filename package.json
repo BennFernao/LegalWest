@@ -26,8 +26,11 @@
   "directories": {
     "lib": "lib"
   },
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
-    "start": "pm2 start index.js",
+    "start": "node start index.js",
     "dev": "nodemon index.js"
   },
   "keywords": [],
