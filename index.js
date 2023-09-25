@@ -273,7 +273,8 @@ app.get("/api/enmarcarConsulta", (req, res)=>{
 })
 
 app.get("/api/enerrorPage", (req, res)=>{
-    console.log("ok")
+    console.log("ok", __dirname)
+    
     res.sendFile(path.join(__dirname, "errorPages", "enerrorPage.html"))
 })
 

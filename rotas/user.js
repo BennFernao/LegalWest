@@ -265,6 +265,12 @@ app.get("/dashboard", verificadorDaSessaoUser ,(req, res)=>{
     }
 })
 
+app.get("/teste", (req, res)=>{
+
+    console.log("ok", __dirname)
+    res.send({nome: "ben"})
+})
+
 
 app.get("/lerUsers", verificadorDaSessaoSuperAdmin,  async (req, res)=>{
 

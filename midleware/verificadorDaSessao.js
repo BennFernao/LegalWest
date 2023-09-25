@@ -9,7 +9,7 @@ function verificadorDeSessao(req, res, next){
 
     }else{
       
-      res.redirect("/user/login")
+      res.redirect("/api/user/logar")
     }
 }
 
