@@ -296,7 +296,7 @@ app.get("/api/meetInexistente", (req, res)=>{
     res.sendFile(path.join(__dirname,  "errorPages", "erroMeet.html"))
 })
 
-app.get("/api/teste", async (req, res)=>{
+app.get("/api/teste", (req, res)=>{
 
     
     res.send({nome: "ben78"})
