@@ -2,7 +2,7 @@ const username = document.querySelector(".username")
 const username1 = document.querySelector(".username1")
 
 
-fetch("/user/verificarUser").then((res)=> res.json())
+fetch("/api/user/verificarUser").then((res)=> res.json())
                             .then(res=>{
                                 if(res[0] == "erro"){
 

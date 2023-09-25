@@ -12,7 +12,7 @@ botaoSubscrever.addEventListener("click", async ()=>{
             alerta.innerHTML = "<p>Cadastrando</p>"
 
             
-            const resposta = await fetch("/email/subscrever", {
+            const resposta = await fetch("/api/email/subscrever", {
                 method: "POST",
                 body : JSON.stringify({email}),
                 headers:{"Content-Type":"application/json"}

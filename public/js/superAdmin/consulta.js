@@ -56,7 +56,7 @@ async function EscreverHorarios(dias, horarios){
 
                                         
                 botaoSalvar.addEventListener("click", async  (e)=>{
-                    const resposta = await fetch("/horario/atualizar", {
+                    const resposta = await fetch("/api/horario/atualizar", {
                         method : "PUT",
                         body:JSON.stringify({horario , dias: diasDeAtuacao}),
                         headers:{"content-type": "application/json"}
@@ -101,7 +101,7 @@ async function EscreverHorarios(dias, horarios){
 
         const botaoSalvar = document.querySelector(".botaoSalvarHorario")
         botaoSalvar.addEventListener("click", async  (e)=>{
-                const resposta = await fetch("/horario/atualizar", {
+                const resposta = await fetch("/api/horario/atualizar", {
                     method : "PUT",
                     body:JSON.stringify({horario , dias: diasDeAtuacao}),
                     headers:{"content-type": "application/json"}
@@ -284,7 +284,7 @@ async function inicializadorConsultas(){
 
         async function buscarConsultas(){
     
-                const resposta = await fetch("/consulta/consultasAtivas").then((res)=> res.json())
+                const resposta = await fetch("/api/consulta/consultasAtivas").then((res)=> res.json())
                                                                     .catch((error)=> ["erro", "erro ao buscar dados"])
 
                 
@@ -406,7 +406,7 @@ async function inicializadorConsultas(){
                 acao.addEventListener("click", ()=>{
 
                     console.log(consulta)
-                    location.href = "/meet/iniciarReuniao/"+ consulta.id
+                    location.href = "/api/meet/iniciarReuniao/"+ consulta.id
                 })
 
                 

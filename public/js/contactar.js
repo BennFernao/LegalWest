@@ -17,7 +17,7 @@ botaoEnviarContacto.addEventListener("click", async ()=>{
     
     if(nome && email && hora && data && servico ){
 
-        const resposta = await fetch("/email/fazerUmPedido", {
+        const resposta = await fetch("/api/email/fazerUmPedido", {
             method: "POST",
             body : JSON.stringify({nome, email, data , hora, servico}),
             headers:{"Content-Type":"application/json"}

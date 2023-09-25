@@ -2,7 +2,7 @@ async function inicializadorHistorico(){
 
     async function buscarConsultas(){
 
-            const resposta = await fetch("/consulta/historicoRecente").then((res)=> res.json())
+            const resposta = await fetch("/api/consulta/historicoRecente").then((res)=> res.json())
                                                                 .catch((error)=> ["erro", "erro ao buscar dados", error])
         
             console.log(resposta )

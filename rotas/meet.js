@@ -902,12 +902,12 @@ app.get("/iniciarReuniao/:id", async (req, res)=>{
                 const trintaMinutosEmMilisegundos = 1200000
                 if(dataAtualEmMilisegundos - dataMarcadaMilisegundos < trintaMinutosEmMilisegundos ){
 
-                    res.redirect(`/meet/meuMeut/${id}`)
+                    res.redirect(`/api/meet/meuMeut/${id}`)
 
                 }else{
 
                     await Consulta.update({estado: "atendido"}, {where: {id:id}})
-                    res.redirect("/meetRealizado")
+                    res.redirect("/api/meetRealizado")
                 }
             }
 
@@ -918,11 +918,11 @@ app.get("/iniciarReuniao/:id", async (req, res)=>{
 
             if(consulta.estado == "atendido"){
 
-                res.redirect("/meetRealizado")
+                res.redirect("/api/meetRealizado")
 
             }else{
 
-                res.redirect("/meetCancelado")
+                res.redirect("/api/meetCancelado")
             }
 
         }
@@ -932,7 +932,7 @@ app.get("/iniciarReuniao/:id", async (req, res)=>{
     }else{
 
         
-        res.redirect("/meetInexistente")
+        res.redirect("/api/api/meetInexistente")
 
     }
     
@@ -1119,7 +1119,7 @@ app.get("/meuMeet/:idConsulta", async (req, res)=>{
                     }else{
     
                         await Consulta.update({estado: "cancelado"}, {where: {id:idConsulta}})
-                        res.redirect("/meetAtendido")
+                        res.redirect("/api/meetAtendido")
                     }
                 }
     
@@ -1130,11 +1130,11 @@ app.get("/meuMeet/:idConsulta", async (req, res)=>{
     
                 if(consulta.estado == "atendido"){
     
-                    res.redirect("/meetAtendido")
+                    res.redirect("/api/meetAtendido")
     
                 }else{
     
-                    res.redirect("/meetCancelado")
+                    res.redirect("/api/meetCancelado")
                 }
     
             }
@@ -1149,7 +1149,7 @@ app.get("/meuMeet/:idConsulta", async (req, res)=>{
         }
 
     }else{
-        res.redirect("/naoPermitido")
+        res.redirect("/api/naoPermitido")
     }
 })
 

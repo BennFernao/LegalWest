@@ -56,15 +56,15 @@ const meetEndpoints = require("./rotas/meet")
 
 
 // middlewares
-app.use("/lawyers" , lawyerEndpoints)
-app.use("/posts", postsEndpoints)
-app.use("/admin", adminEndpoints)
-app.use("/email", emailEndpoints)
-app.use("/user", userEndpoints)
-app.use("/consulta", consultaEndpoints)
-app.use("/horario", horarioEndpoints)
-app.use("/especialidade", especialidadeEndpoints)
-app.use("/meet", meetEndpoints)
+app.use("/api/lawyers" , lawyerEndpoints)
+app.use("/api/posts", postsEndpoints)
+app.use("/api/admin", adminEndpoints)
+app.use("/api/email", emailEndpoints)
+app.use("/api/user", userEndpoints)
+app.use("/api/consulta", consultaEndpoints)
+app.use("/api/horario", horarioEndpoints)
+app.use("/api/especialidade", especialidadeEndpoints)
+app.use("/api/meet", meetEndpoints)
 
 
 // Importação de todos modelos dos banco de dados
@@ -229,132 +229,8 @@ app.get("/suasImagens", (req, res)=>{
 })
 
 
-app.get("/seucss", (req, res)=>{
-
-    try {
-    
-    let nomesDosArquivos = ""
-    let tipos = ""
-        
-    fs.readdir(__dirname + "/public/css", (err, arquivos)=>{
-
-
-        res.send(arquivos)
-    })
-
-
-
-    } catch (error) {
-
-        res.send([])
-            
-    }
-})
-
-app.get("/seuslibs", (req, res)=>{
-
-    try {
-    
-    let nomesDosArquivos = ""
-    let tipos = ""
-        
-    fs.readdir(__dirname + "/public/lib/odometer", (err, arquivos)=>{
-
-
-        res.send(arquivos)
-    })
-
-
-
-    } catch (error) {
-
-        res.send([])
-            
-    }
-})
-
-
-app.get("/seujs", (req, res)=>{
-
-    try {
-    
-    let nomesDosArquivos = ""
-    let tipos = ""
-        
-    fs.readdir(__dirname + "/public/js", (err, arquivos)=>{
-
-
-        res.send(arquivos)
-    })
-
-
-
-    } catch (error) {
-
-        res.send([])
-            
-    }
-})
-
-
-app.get("/lib/:nome", (req, res)=>{
-    const nome = req.params.nome
-
-    try {
-    
-            let nomesDosArquivos = ""
-            let tipos = ""
-            
-                
-            fs.readFile(__dirname + `/public/lib/${nome}`, (err, arquivos)=>{
-        
-                res.send(arquivos)
-            })
-    
-    
-        } catch (error) {
-    
-             res.send([])              
-        }
-
-
-})
-
-app.get("/js/:nome", (req, res)=>{
-    const nome = req.params.nome
-
-    try {
-    
-            let nomesDosArquivos = ""
-            let tipos = ""
-            
-                
-            fs.readFile(__dirname + `/public/js/${nome}`, (err, arquivos)=>{
-        
-                res.send(arquivos)
-            })
-    
-    
-        } catch (error) {
-    
-             res.send([])              
-        }
-
-
-})
-
-
-
 // ??
-app.get("/", async (req, res)=>{
-
-    const users =  await User.findAll()
-    res.send({users})
-})
-
-
-// ??
-app.post("/upload", upload.single("imagem") ,async (req, res)=>{
+app.post("/api/upload", upload.single("imagem") ,async (req, res)=>{
 
     console.log(req.file)
 
@@ -366,7 +242,7 @@ app.post("/upload", upload.single("imagem") ,async (req, res)=>{
 })
 
 
-app.get("/marcarConsulta", (req, res)=>{
+app.get("/api/marcarConsulta", (req, res)=>{
 
 
     if(req.session.userId){
@@ -381,7 +257,7 @@ app.get("/marcarConsulta", (req, res)=>{
     
 })
 
-app.get("/enmarcarConsulta", (req, res)=>{
+app.get("/api/enmarcarConsulta", (req, res)=>{
 
 
     if(req.session.userId){
@@ -396,25 +272,25 @@ app.get("/enmarcarConsulta", (req, res)=>{
     
 })
 
-app.get("/enerrorPage", (req, res)=>{
+app.get("/api/enerrorPage", (req, res)=>{
     console.log("ok")
     res.sendFile(path.join(__dirname, "errorPages", "enerrorPage.html"))
 })
 
 
-app.get("/meetCancelado", (req, res)=>{
+app.get("/api/meetCancelado", (req, res)=>{
 
     res.sendFile(path.join(__dirname,  "errorPages", "erroMeetCancelado.html"))
    
 })
 
-app.get("/meetAtendido", (req, res)=>{
+app.get("/api/meetAtendido", (req, res)=>{
 
     res.sendFile(path.join(__dirname,  "errorPages", "erroMeetRealizado.html"))
    
 })
 
-app.get("/meetInexistente", (req, res)=>{
+app.get("/api/meetInexistente", (req, res)=>{
 
     
     res.sendFile(path.join(__dirname,  "errorPages", "erroMeet.html"))
@@ -425,11 +301,6 @@ app.get("/api/ben", async (req, res)=>{
 
     const users =  await User.findAll()
     res.send({users})
-})
-
-app.get("/index", (req, res)=>{
-
-    res.sendFile(path.join(__dirname, "pages", "index.html"))
 })
 
 

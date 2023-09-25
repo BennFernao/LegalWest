@@ -149,7 +149,7 @@ app.get("/login", async (req, res)=>{
 
     if(req.session.userId){ 
       
-        res.redirect("/user/dashboard")
+        res.redirect("/api/user/dashboard")
   
     }else{
               
@@ -295,7 +295,7 @@ app.get("/logout", verificadorDaSessaoUser, (req, res)=>{
       
     } catch (error) {
     
-      res.redirect("/user/dashboard")
+      res.redirect("/api/user/dashboard")
     }
 })
 

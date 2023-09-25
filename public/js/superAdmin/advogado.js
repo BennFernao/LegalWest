@@ -60,7 +60,7 @@ if(!(resposta instanceof Error)){
 
 async function atualizarAdvogado(idAdvogado, novosDados){
 
-        const resposta = await  fetch(`../lawyers/editLawyer/${id_atual}`, {
+        const resposta = await  fetch(`/api/lawyers/editLawyer/${id_atual}`, {
             method: "POST",
             body: formularioAT 
 
@@ -80,7 +80,7 @@ botaoAdicionar.addEventListener("click", ()=>{
     let formularioAdd = document.querySelector(".formularioAdd")
     formularioAdd = new FormData(formularioAdd)
     
-    fetch("/lawyers/addLawyer", {
+    fetch("/api/lawyers/addLawyer", {
         method: "POST",
         body: formularioAdd  
     }).then((res)=> res.json())
@@ -150,7 +150,7 @@ function escreverAdvogado(advogado){
 
                     const id = img_2.getAttribute("cod")
 
-                    fetch(`../lawyers/lerAdvogado/${id_atual}`, {
+                    fetch(`/api/lawyers/lerAdvogado/${id_atual}`, {
                             method:"GET",
                             credentials:"include",
                             headers:{"content-type": "application/json"}
@@ -230,7 +230,7 @@ function escreverAdvogado(advogado){
                     id_atual = advogado.id
 
 
-                    fetch(`/user/advogado/${id_atual}`, {
+                    fetch(`/api/user/advogado/${id_atual}`, {
                             method:"POST",
                             credentials:"include",
                             headers:{"content-type": "application/json"}
@@ -287,7 +287,7 @@ function escreverAdvogado(advogado){
 
 function inicializadorAdvogado(){
 
-    fetch("/../lawyers/showLawyers", {
+    fetch("/api/lawyers/showLawyers", {
         method:"GET",
         credentials:"include",
         headers:{"content-type": "application/json"}

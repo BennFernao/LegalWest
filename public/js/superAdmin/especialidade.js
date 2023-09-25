@@ -5,7 +5,7 @@ async function inicializadorEspecialidade(){
     // const alertaEspecialidade = document.querySelector(".alertaEspecialidade")
 
     
-    const resposta = await fetch("/especialidade/lerEspecialidades")
+    const resposta = await fetch("/api/especialidade/lerEspecialidades")
         .then((res)=> res.json())
         .catch((error)=> ["erro", "erro ao enviar os dados"]) 
     
@@ -69,7 +69,7 @@ async function inicializadorEspecialidade(){
 
                                           
                             
-                            const res = await fetch(`/especialidade/deletarEspecialidade/${elemento.id}`, 
+                            const res = await fetch(`/api/especialidade/deletarEspecialidade/${elemento.id}`, 
                                                                     {                          
                                                                         method: "DELETE",
                                                                         
@@ -291,7 +291,7 @@ botaoAdicionarEspecialidade.addEventListener("click", async ()=>{
     const nome = document.querySelector(".nomeDaEspecialidade").value
     if(nome){
 
-        const resposta = await fetch("/especialidade/adicionar", {
+        const resposta = await fetch("/api/especialidade/adicionar", {
             body :JSON.stringify({nome}),
             method: "POST",
             headers: {"content-type": "application/json"}

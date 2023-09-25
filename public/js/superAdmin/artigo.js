@@ -56,7 +56,7 @@ function copiarTexto(text){
 
 function inicializadorUploads(){
 
-    fetch("/suasImagens", {
+    fetch("/api/suasImagens", {
         method: "GET",
         headers:{"Content-Type":"application/json"}
     }).then((res)=> res.json())
@@ -167,7 +167,7 @@ function eliminarPost(id){
 
   
 
-  fetch(`/posts/deletePost/${id}`)
+  fetch(`/api/posts/deletePost/${id}`)
   .then((res)=> res.json())
   .then((res)=> {
     console.log(res)
@@ -186,7 +186,7 @@ function escreverArtigosRegistados(){
   divPosts.style.display = "block"
 
 
-  fetch("/posts/showSomePosts").then((res)=> res.json())
+  fetch("/api/posts/showSomePosts").then((res)=> res.json())
   .then((res)=>{
 
       if(!(res[0] == "erro")){

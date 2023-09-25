@@ -82,7 +82,7 @@ async function inicializadorDadosDoUser(){
 
 
             const dados = {senhaAtual, novaSenha }
-            const resposta = await  atualizarDados("/user/atualizarSenha", dados)
+            const resposta = await  atualizarDados("/api/user/atualizarSenha", dados)
             const divAlerta = document.querySelector(".alertaModalSenha")
             divAlerta.style.display = "block"
 
@@ -107,7 +107,7 @@ async function inicializadorDadosDoUser(){
 
     async function buscarDadosDoUsuario(){
 
-        const resposta = await fetch("/user/lerUser" )
+        const resposta = await fetch("/api/user/lerUser" )
             .then((res )=> res.json())
             .catch((erro)=> ["erro", "erro ao buscar dados"])
 
