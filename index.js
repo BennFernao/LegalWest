@@ -298,7 +298,7 @@ app.get("/api/meetInexistente", (req, res)=>{
 
 app.get("/api/teste", async (req, res)=>{
 
-    
+    const users =  await User.findAll()
     res.send({nome: "ben"})
 })
 
