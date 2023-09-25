@@ -126,9 +126,9 @@
                        </div>
 
                        <!--Div para a User-->
-                       <a href="/marcarConsulta" class="btn btn-primary mr-5 ml-4 mb-2" >Marcar Consulta</a>
+                       <a href="/api/marcarConsulta" class="btn btn-primary mr-5 ml-4 mb-2" >Marcar Consulta</a>
                        <div class="ml-4 divLogin">
-                           <a href="/user/login">
+                           <a href="/api/user/logar">
                            <button class="btn btn-outline-primary mr-3">
                                <div class="d-flex justify-content-center align-items-center">
                                    <img src="./img/user.svg" class="mr-2 usernameIcon" width="30px" />
@@ -166,7 +166,7 @@
                    </div>
 
                    
-                   <a href="/marcarConsulta" class="btn btn-primary mr-5" >Marcar Consulta</a>           
+                   <a href="/api/marcarConsulta" class="btn btn-primary mr-5" >Marcar Consulta</a>           
                   
 
                    <!--Div para tradução-->
@@ -200,7 +200,7 @@
                    <!--Div para o login-->
 
                    <div class="divLogin1">
-                       <a href="/user/login">
+                       <a href="/api/user/logar">
                        <button class="btn btn-outline-primary mr-3">
                            <div class="d-flex justify-content-center align-items-center">
                                <img src="./img/user.svg" class="mr-2 usernameIcon1" width="30px" />
@@ -374,18 +374,10 @@
  
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="js/verificarUser.js"></script>
+    <script src="/js/verificarUser.js"></script>
     <script src="/js/utils.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+
     
 
     <script>
@@ -483,7 +475,7 @@
 
     
                 div2.addEventListener("click", ()=>{
-                    location.href = `/lawyers/nossoAdvogado/${lawyer.id}`
+                    location.href = `api/lawyers/nossoAdvogado/${lawyer.id}`
     
                 })
     

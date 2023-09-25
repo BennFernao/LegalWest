@@ -68,6 +68,8 @@ async function atualizarAdvogado(idAdvogado, novosDados){
                 .then((res)=> res)
                 .catch((erro)=> new Error("Erro ao buscar dados"))
 
+        console.log(resposta)
+
         return resposta
 }
 
@@ -294,8 +296,6 @@ function inicializadorAdvogado(){
     }).then((res)=> res.json()) 
     .then(res=>{
 
-        console.log(res)
-        
         
         if(res.length > 0){
             console.log(res)

@@ -4,7 +4,7 @@ async function inicializadorHorario(){
 
     async function buscarHorarios(){
 
-            const resposta = await fetch("/horario/lerHorarioAtual").then((res)=> res.json())
+            const resposta = await fetch("/api/horario/lerHorarioAtual").then((res)=> res.json())
                                                                 .catch((error)=> ["erro", "erro ao buscar dados"])
 
 

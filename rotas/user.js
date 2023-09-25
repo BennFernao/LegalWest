@@ -145,7 +145,7 @@ app.post("/login", async (req, res)=>{
         }
 })
 
-app.get("/login", async (req, res)=>{
+app.get("/logar", async (req, res)=>{
 
     if(req.session.userId){ 
       

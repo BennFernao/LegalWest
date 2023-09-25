@@ -206,7 +206,7 @@ connetion.sync({alter: true})
 
 
 //
-app.get("/suasImagens", (req, res)=>{
+app.get("/api/suasImagens", (req, res)=>{
 
     try {
     

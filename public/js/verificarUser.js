@@ -4,6 +4,7 @@ const username1 = document.querySelector(".username1")
 
 fetch("/api/user/verificarUser").then((res)=> res.json())
                             .then(res=>{
+                                
                                 if(res[0] == "erro"){
 
                                     username.innerText = "Entrar"
