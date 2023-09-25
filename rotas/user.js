@@ -153,7 +153,7 @@ app.get("/logar", async (req, res)=>{
   
     }else{
               
-        res.sendFile(path.join(__dirname, "..", "adminPages", "login.html"))
+        res.sendFile(path.join(__dirname, "..", "adminPages", "Login.html"))
     }
 })
 
