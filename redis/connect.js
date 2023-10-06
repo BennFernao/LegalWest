@@ -9,7 +9,6 @@ const client = createClient({
     }
 });
 
-
 async function connectToRedis(){
     await client.connect().then(()=> console.log("ligado ao redis"))
     client.on("error", (error)=> console.log(error))

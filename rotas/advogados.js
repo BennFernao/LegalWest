@@ -6,6 +6,7 @@ const path = require("path")
 
 const multer = require("multer")
 const verificadorDeSessao = require("../midleware/verificadorDaSessao")
+const verificadorDeSessaoSuperAdmin = require("../midleware/verificadorDaSessaoSuperAdmin")
 
 const storage = multer.diskStorage({
 
@@ -27,11 +28,11 @@ const storage = multer.diskStorage({
         cb(null, nomeDoArquivo)
     }
 })
-
-
 const upload = multer({storage})
 
-app.post("/addLawyer", verificadorDeSessao,  upload.single("imagem"), async (req , res)=>{
+
+
+app.post("/addLawyer", verificadorDeSessaoSuperAdmin,  upload.single("imagem"), async (req , res)=>{
 
     const {nome, descricao, escritorio} = req.body
     console.log(nome, descricao, escritorio)
@@ -58,7 +59,7 @@ app.post("/addLawyer", verificadorDeSessao,  upload.single("imagem"), async (req
     }
 })
 
-app.get("/especialidadeDoAdvogado/:id", async (req, res)=>{
+app.get("/especialidadeDoAdvogado/:id",verificadorDeSessao, async (req, res)=>{
 
     try {
         const id = req.params.id
@@ -78,7 +79,6 @@ app.get("/especialidadeDoAdvogado/:id", async (req, res)=>{
         res.send(["erro", "erro ao buscar os dados"])
     }
 })
-
 
 app.get("/nossoAdvogado/:id", async (req, res)=>{
 
@@ -471,7 +471,7 @@ app.get("/nossoAdvogado/:id", async (req, res)=>{
     }
 })
 
-app.get("/showLawyers", async (req , res)=>{
+app.get("/showLawyers",verificadorDeSessao, async (req , res)=>{
 
     try {        
             let todosAdvogados = await Advogado.findAll()
@@ -485,7 +485,7 @@ app.get("/showLawyers", async (req , res)=>{
         }
 })
 
-app.get("/lerAdvogado/:id", async (req , res)=>{
+app.get("/lerAdvogado/:id",verificadorDeSessao, async (req , res)=>{
         
     try {        
             const id = req.params.id 
@@ -507,9 +507,10 @@ app.get("/lerAdvogado/:id", async (req , res)=>{
 })
 
 
-app.post("/editLawyer/:id", verificadorDeSessao,  upload.single("imagem"), async (req, res)=>{
+app.post("/editLawyer/:id", verificadorDeSessaoSuperAdmin,  upload.single("imagem"), async (req, res)=>{
 
     const {nome, escritorio, descricao} = req.body
+    console.log(nome, escritorio, descricao)
     const id = req.params.id
 
     try {
@@ -518,21 +519,23 @@ app.post("/editLawyer/:id", verificadorDeSessao,  upload.single("imagem"), async
 
             const urlImagemPerfil = req.file.filename
 
-            const updated =  await Advogado.update({nome, escritorio, descricao, urlImagemPerfil }, {
+           const updated = await Advogado.update({nome, escritorio, descricao, urlImagemPerfil }, {
                 where:{
                     id
                 }
             })
+            console.log(updated)
     
             res.send(["sucesso", "Dados atualizados com sucesso"])
 
         }else{
 
-            const updated =  await Advogado.update({nome, escritorio, descricao }, {
+            const updated = await Advogado.update({nome, escritorio, descricao }, {
                 where:{
                     id
                 }
             })
+            console.log(updated)
     
             res.send(["sucesso", "Dados atualizados com sucesso"])
         }
@@ -545,12 +548,13 @@ app.post("/editLawyer/:id", verificadorDeSessao,  upload.single("imagem"), async
     }
 })
 
-app.get("/deleteLawyer/:id",verificadorDeSessao, async (req, res)=>{
+app.get("/deleteLawyer/:id",verificadorDeSessaoSuperAdmin, async (req, res)=>{
+
+
 
     const id = req.params.id
 
     try {
-
         const updated =  await Advogado.destroy({where:{
             id
         }})
@@ -559,7 +563,6 @@ app.get("/deleteLawyer/:id",verificadorDeSessao, async (req, res)=>{
         
     } catch (error){
 
-        console.log(error)
         res.send(["erro", "erro ao buscar os dados"])
     }
 })

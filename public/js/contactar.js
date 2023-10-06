@@ -56,8 +56,8 @@ botaoEnviarContacto.addEventListener("click", async ()=>{
             alertaParaContacto.setAttribute("class", "alert alert-danger")
             alertaParaContacto.innerHTML = "<p>Preencha todos os campos</p>"
             setTimeout(()=>{
-                alerta.setAttribute("class", "")
-                alerta.innerHTML = ""
+                alertaParaContacto.setAttribute("class", "")
+                alertaParaContacto.innerHTML = ""
             }, 3000)
 
     }

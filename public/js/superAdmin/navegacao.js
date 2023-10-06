@@ -42,6 +42,13 @@ let itensDeNavegacao = [{
     imagemSecundaria : "/img/postSecundario.svg",
     conteudo : document.querySelector(".divEscreverPost"),
     inicializador : inicializadorArtigo
+},{
+    estado: 0,
+    texto : "Videos",
+    srcImagem : "/img/movieSecundario.svg",
+    imagemSecundaria : "/img/movieSecundario.svg",
+    conteudo : document.querySelector(".divVideos"),
+    inicializador : inicializadorVideo
 }]
 
 

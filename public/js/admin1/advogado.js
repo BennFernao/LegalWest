@@ -31,7 +31,7 @@ if(nome && sobrenome && email && telefone  ){
     console.log(resposta)
 }else{
 
-console.log("Dados incorretos")
+
 }
 })
 

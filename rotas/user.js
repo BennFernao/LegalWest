@@ -7,8 +7,6 @@ let chance =  require("chance")
 chance = new chance()
 
 const Advogado = require("../database/advogado/model")
-
-
 const verificadorDaSessaoUser = require("../midleware/verificadorDaSessao")
 const verificadorDaSessaoSuperAdmin = require("../midleware/verificadorDaSessaoSuperAdmin")
 const enviarEmail = require("../email/nodemail")
@@ -89,7 +87,7 @@ app.post("/adicionarUserAdmin", verificadorDaSessaoSuperAdmin, async (req, res)=
             } catch (error) {
                 res.send(["erro", "erro ao adicionar o user"])
             }}
-        }else{
+    }else{
 
             res.send(["erro", "dados imcompletos"])
     }
@@ -99,50 +97,57 @@ app.post("/adicionarUserAdmin", verificadorDaSessaoSuperAdmin, async (req, res)=
 app.post("/login", async (req, res)=>{
 
     const {email, senha}  = req.body
+    const id = req.session.userId
+    
+    if(!id){
 
-    if(email && senha){
+        if(email && senha){
 
-            const  usuarioExiste = await User.findOne({where:{
-                email
-            }})
+                const  usuarioExiste = await User.findOne({where:{
+                    email
+                }})
 
-            if(usuarioExiste){
+                if(usuarioExiste){
 
-                let senhaEncriptada = usuarioExiste.toJSON().senha
-                const senhaCorreta = await bcrypt.compare(senha, senhaEncriptada)
+                    let senhaEncriptada = usuarioExiste.toJSON().senha
+                    const senhaCorreta = await bcrypt.compare(senha, senhaEncriptada)
 
-                if(senhaCorreta){
+                    if(senhaCorreta){
 
-                    req.session.privilegio = usuarioExiste.toJSON().privilegio
+                        req.session.privilegio = usuarioExiste.toJSON().privilegio
 
-                    if(req.session.privilegio == "admin"){
+                        if(req.session.privilegio == "admin"){
 
-                        const {id: idAdvogado} = await Advogado.findOne({where: {IdUser : usuarioExiste.toJSON().id}, attributes:["id"]})
-                        req.session.idAdvogado = idAdvogado
-                    
+                            const {id: idAdvogado} = await Advogado.findOne({where: {IdUser : usuarioExiste.toJSON().id}, attributes:["id"]})
+                            req.session.idAdvogado = idAdvogado
+                        
+                        }
+
+                        
+                        req.session.userId = usuarioExiste.toJSON().id
+                        req.session.nomeDoUser = usuarioExiste.toJSON().nome
+                        req.session.sobrenomeDoUser = usuarioExiste.toJSON().sobrenome
+                        res.send(["sucesso", "autorizado"])
+
+                    }else{
+
+                        res.send(["erro", "nao autorizado"])
                     }
-
-                    
-                    req.session.userId = usuarioExiste.toJSON().id
-                    req.session.nomeDoUser = usuarioExiste.toJSON().nome
-                    req.session.sobrenomeDoUser = usuarioExiste.toJSON().sobrenome
-                    res.send(["sucesso", "autorizado"])
 
                 }else{
 
-                    res.send(["erro", "nao autorizado"])
+                    res.send(["erro", "falha ao fazer o login"])
+
                 }
 
-            }else{
+        }else{
 
-                res.send(["erro", "falha ao fazer o login"])
-
+                res.send(["erro", "dados imcompletos"])
             }
-
     }else{
 
-            res.send(["erro", "dados imcompletos"])
-        }
+        res.redirect("/")
+    }
 })
 
 app.get("/logar", async (req, res)=>{
@@ -240,7 +245,7 @@ app.post("/advogado/:id", verificadorDaSessaoSuperAdmin,async (req, res)=>{
         
     } catch (error) {
         
-        res.send(["erro", "falha ao proceder"])
+        res.send(["erro", "erro ao buscar o advogado"])
         
     }
 })
@@ -265,15 +270,9 @@ app.get("/dashboard", verificadorDaSessaoUser ,(req, res)=>{
     }
 })
 
-app.get("/teste", (req, res)=>{
-
-    console.log("ok", __dirname)
-    res.send({nome: "ben"})
-})
 
 
 app.get("/lerUsers", verificadorDaSessaoSuperAdmin,  async (req, res)=>{
-
     const users = await User.findAll()
     res.send(users)
 })

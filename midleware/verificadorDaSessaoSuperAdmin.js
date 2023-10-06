@@ -1,13 +1,17 @@
 function verificadorDeSessaoSuperAdmin(req, res, next){
 
     const path = require("path")
+
+    console.log("Autorizado")
     
-      if(req.session.privilegio == "superAdmin"){
+
+    if(req.session.privilegio == "superAdmin"){
+        console.log("Autorizado")
         next()
   
-      }else{
-        
-        res.sendFile(path.join(__dirname, "..", "adminPages", "login.html"))
+    }else{
+        console.log("não autorizado")
+        res.send(["erro", "Não autorizado"])
       }
   }
   

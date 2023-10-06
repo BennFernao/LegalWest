@@ -11,6 +11,7 @@ const {zonedTimeToUtc, utcToZonedTime,format ,getTimezoneOffset} = require("date
 const verificadorDeSessao = require("../midleware/verificadorDaSessao")
 const Horario = require("../database/horarios/model")
 const { Op } = require("sequelize")
+const verificadorDeSessaoSuperAdmin = require("../midleware/verificadorDaSessaoSuperAdmin")
 
 
 app.post("/adicionar", verificadorDeSessao,  async (req, res)=>{
@@ -64,7 +65,7 @@ app.post("/adicionar", verificadorDeSessao,  async (req, res)=>{
 })
 
 
-app.put("/atualizar",   async(req, res)=>{
+app.put("/atualizar",verificadorDaSessao,   async(req, res)=>{
 
     const {idAdvogado, dia, hora, idConsulta} = req.body
     const id = req.session.userId
@@ -106,7 +107,7 @@ app.put("/atualizar",   async(req, res)=>{
 })
 
 
-app.get("/minhasConsultas", async (req,res)=>{
+app.get("/minhasConsultas",verificadorDaSessao, async (req,res)=>{
 
     try {
         const id = req.session.userId
@@ -125,7 +126,7 @@ app.get("/minhasConsultas", async (req,res)=>{
 })
 
 
-app.get("/consultasAtivas", async (req, res)=>{
+app.get("/consultasAtivas",verificadorDaSessao, async (req, res)=>{
 
     
     const consultas = await Consulta.findAll({where:{ estado : {[Op.or]:["enviado", "lido"]}}, attributes:["id", "idAdvogado", "idUser", "para"]})
@@ -178,7 +179,7 @@ app.get("/consultasAtivas", async (req, res)=>{
 })
 
 
-app.get("/historicoDoUser", async (req, res)=>{
+app.get("/historicoDoUser",verificadorDaSessao, async (req, res)=>{
 
     const idUser =  req.session.userId
   
@@ -220,7 +221,7 @@ app.get("/historicoDoUser", async (req, res)=>{
 })
 
 
-app.get("/lerMinhasConsultasAtivasAdvogado", async (req, res)=>{
+app.get("/lerMinhasConsultasAtivasAdvogado",verificadorDaSessao, async (req, res)=>{
 
 
 
@@ -274,7 +275,7 @@ app.get("/lerMinhasConsultasAtivasAdvogado", async (req, res)=>{
 })
 
 
-app.get("/lerMinhasConsultasAtivasUser", async (req, res)=>{
+app.get("/lerMinhasConsultasAtivasUser",verificadorDaSessao, async (req, res)=>{
 
     const idUser =  req.session.userId
   
@@ -327,7 +328,7 @@ app.get("/lerMinhasConsultasAtivasUser", async (req, res)=>{
     }
 })
 
-app.get("/historicoRecente", async (req, res)=>{
+app.get("/historicoRecente",verificadorDaSessao, async (req, res)=>{
 
         
     const consultas = await Consulta.findAll({where:{ estado : {[Op.or]:["atendido", "cancelado"]}}})
@@ -345,8 +346,12 @@ app.get("/historicoRecente", async (req, res)=>{
             const dataDaConsulta = new Date(item.para).valueOf()
             const dataDeHoje = new Date().valueOf()
    
-            const user = (await User.findByPk(item.idUser,{attributes: ["nome", "sobrenome"]})).toJSON()
-            const advogado = (await Advogado.findByPk(item.idAdvogado , {attributes:["nome"]})).toJSON()
+            let user = (await User.findByPk(item.idUser,{attributes: ["nome", "sobrenome"]}))
+            let advogado = (await Advogado.findByPk(item.idAdvogado , {attributes:["nome"]}))
+
+            user = user ? user.toJSON() : user 
+            advogado = advogado ? advogado.toJSON() : advogado
+
     
             consultasAtualizados.push(item)
             paresDeUsersEAdvogados.push({user, advogado})
@@ -368,14 +373,14 @@ app.get("/historicoRecente", async (req, res)=>{
 
 
 
-app.get("/lerConsultas", async (req, res)=>{
+app.get("/lerConsultas",verificadorDeSessaoSuperAdmin, async (req, res)=>{
 
     const users = await Consulta.findAll()
     res.send(users)
 })
 
 
-app.post("/lerConsultasAtivasDeUmAdvogado", async (req, res)=>{
+app.post("/lerConsultasAtivasDeUmAdvogado",verificadorDaSessao, async (req, res)=>{
 
     const {id} = req.body
 

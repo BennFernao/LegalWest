@@ -71,8 +71,8 @@
 
            <!--Logotipo para ecras menores que lg-->
 
-           <a href="index.html" class="navbar-brand d-flex d-lg-none">
-               <img src="./img/LegalWest.png" alt="teste" class="img-fluid" width="120px" />              
+           <a href="/en/index.html" class="navbar-brand d-flex d-lg-none">
+               <img src="/img/LegalWest.png" alt="teste" class="img-fluid" width="120px" />              
            </a>
 
            <!--O botão toggle para ecras menores que lg-->
@@ -128,7 +128,7 @@
                    </div>
 
                    <!--Div para a tradução-->
-                   <a href="/marcarConsulta" class="btn btn-primary mr-5 ml-4 mb-2" >Shedule an appoitment</a>
+                   <a href="/api/enmarcarConsulta" class="btn btn-primary mr-5 ml-4 mb-2" >Shedule an appoitment</a>
                    <div class="ml-4 divLogin" >
                        <a href="/api/user/logar">
                        <button class="btn btn-outline-primary mr-3">
@@ -168,7 +168,7 @@
                </div>
 
                
-               <a href="/marcarConsulta" class="btn btn-primary mr-5" >Shedule an appoitment</a>           
+               <a href="/api/enmarcarConsulta" class="btn btn-primary mr-5" >Shedule an appoitment</a>           
               
 
                <!--Div para tradução-->
@@ -353,7 +353,7 @@
                 <div class="row h-100 align-items-center justify-content-center">
                     <div class="col-lg-7 text-center">
                         <h1 class="text-white mb-4">Let's get started. Call us now for a Free Consultation</h1>
-                        <a class="btn btn-primary py-3 px-5 mt-2" href="contact.html">Call Us Now</a>
+                        <a class="btn btn-primary py-3 px-5 mt-2" href="/en/contact.html">Call Us Now</a>
                     </div>
                 </div>
             </div>
@@ -375,7 +375,7 @@
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="../img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="/img/testimonial-1.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -387,7 +387,7 @@
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="../img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="/img/testimonial-2.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -399,7 +399,7 @@
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="/img/testimonial-3.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -411,7 +411,7 @@
                         Sed ea amet kasd elitr stet nonumy, stet rebum et ipsum est duo elitr clita lorem
                     </div>
                     <div class="d-flex align-items-center pt-3">
-                        <img class="img-fluid rounded-circle" src="img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
+                        <img class="img-fluid rounded-circle" src="/img/testimonial-4.jpg" style="width: 80px; height: 80px;" alt="">
                         <div class="pl-4">
                             <h5>Client Name</h5>
                             <p class="m-0">Profession</p>
@@ -526,89 +526,21 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="../lib/easing/easing.min.js"></script>
-    <script src="../lib/waypoints/waypoints.min.js"></script>
-    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="../lib/tempusdominus/js/moment.min.js"></script>
-    <script src="../lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="../lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="/lib/easing/easing.min.js"></script>
+    <script src="/lib/waypoints/waypoints.min.js"></script>
+    <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="/lib/tempusdominus/js/moment.min.js"></script>
+    <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Contact Javascript File -->
-    <script src="../mail/jqBootstrapValidation.min.js"></script>
-    <script src="../mail/contact.js"></script>
+
     <script src="/js/verificarUser.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="../js/main.js"></script>
+
     <script src="/js/agendarCompromisso/en.js" ></script>
     <script src="/js/subscricoes/en.js" ></script>
     <script src="/js/utils.js"></script>
 
-    <script>
-
-        const botaoSubscrever = document.getElementById("botaoSubscrever")
-        botaoSubscrever.addEventListener("click", async ()=>{
-
-            const email = document.getElementById("emailASubscrever").value
-           
-
-            if(email ){
-                    
-                    const resposta = await fetch("/../email/subscrever", {
-                        method: "POST",
-                        body : JSON.stringify({email}),
-                        headers:{"Content-Type":"application/json"}
-                    }).then((res)=> res.json())
-                    .catch((error)=> Error("error sending message"))
-
-                  
-
-                    if(resposta[0] == "sucesso"){
-                        
-                        const alerta = document.getElementById("alt")
-                        alerta.setAttribute("class", "alert alert-primary d-block")
-                        alerta.innerHTML = "<p>successfully subscribed</p>"
-                        setTimeout(()=>{
-                            alerta.setAttribute("class", "")
-                            alerta.innerHTML = ""
-                        }, 3000)
-                    }else{
-                        
-                        const alerta = document.getElementById("alt")
-                        console.log(alerta)
-                        alerta.setAttribute("class", "alert alert-danger d-block")
-                        alerta.innerHTML = `<p>${resposta[1]}</p>`
-                        setTimeout(()=>{
-                            alerta.setAttribute("class", "")
-                            alerta.innerHTML = ""
-                        }, 3000)
-
-                    }
-                    }else{
-
-                        const alerta = document.getElementById("alt")
-                        alerta.setAttribute("class", "alert alert-danger")
-                        alerta.innerHTML = "<p>Fill in your email</p>"
-                        setTimeout(()=>{
-                            alerta.setAttribute("class", "")
-                            alerta.innerHTML = ""
-                        }, 3000)
-
-                    }
-
-        })
-
-
-
-        const ptOption = document.querySelector(".lang")
-        ptOption.addEventListener("change", ()=>{
-
-            if(ptOption.value == 1){
-                location.href = "/../service.html"
-            }
-            
-        })
-    </script>
 </body>
 
 </html>

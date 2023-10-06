@@ -8,9 +8,10 @@ const multer = require("multer")
 const verificadorDeSessao = require("../midleware/verificadorDaSessao")
 const Advogado = require("../database/advogado/model")
 const User = require("../database/user/model")
+const verificadorDeSessaoSuperAdmin = require("../midleware/verificadorDaSessaoSuperAdmin")
 
 
-app.post("/adicionar",  async (req , res)=>{
+app.post("/adicionar",verificadorDeSessaoSuperAdmin,  async (req , res)=>{
 
     const {nome} = req.body
     
@@ -33,11 +34,9 @@ app.post("/adicionar",  async (req , res)=>{
 })
 
 
-app.post("/associarAdvogados",  async (req , res)=>{
+app.post("/associarAdvogados",verificadorDeSessaoSuperAdmin,  async (req , res)=>{
 
     const {itensAdicionais, idEspecialidade} = req.body
- 
-    
     
     if(itensAdicionais && idEspecialidade){
 
@@ -71,7 +70,7 @@ app.post("/associarAdvogados",  async (req , res)=>{
     }
 })
 
-app.post("/desassociarAdvogados",  async (req , res)=>{
+app.post("/desassociarAdvogados",verificadorDeSessaoSuperAdmin,  async (req , res)=>{
 
     const {itensEliminatorios, idEspecialidade} = req.body
     
@@ -188,7 +187,7 @@ app.get("/lerAdvogadosEspecializados/:idEspecialidade", async (req , res)=>{
         }
 })
 
-app.get("/associarAdvogado/:idEspecialidade/:idAdvogado", async (req , res)=>{
+app.get("/associarAdvogado/:idEspecialidade/:idAdvogado",verificadorDeSessaoSuperAdmin, async (req , res)=>{
         
     try {        
      
@@ -216,7 +215,7 @@ app.get("/associarAdvogado/:idEspecialidade/:idAdvogado", async (req , res)=>{
 })
 
 
-app.put("/editarEspecialidade/:id", async (req, res)=>{
+app.put("/editarEspecialidade/:id",verificadorDeSessaoSuperAdmin, async (req, res)=>{
 
     const {nome} = req.body
     const id = req.params.id
@@ -247,7 +246,7 @@ app.put("/editarEspecialidade/:id", async (req, res)=>{
     }
 })
 
-app.delete("/deletarEspecialidade/:id", async (req, res)=>{
+app.delete("/deletarEspecialidade/:id",verificadorDeSessaoSuperAdmin, async (req, res)=>{
 
     const id = req.params.id
 

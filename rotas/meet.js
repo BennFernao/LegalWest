@@ -3,6 +3,7 @@ const path =  require("path")
 
 const app = require("express").Router()
 const Axios = require("axios")
+const verificadorDeSessao = require("../midleware/verificadorDaSessao")
 
 function retornarUmaPaginaIniciarReuniao(idConsulta, data){
 
@@ -963,7 +964,7 @@ app.get("/verificarInicioDaReuniao/:id", async (req, res)=>{
 })
 
 
-app.post("/registarId", async (req, res)=>{
+app.post("/registarId", verificadorDeSessao,  async (req, res)=>{
 
     const {idReuniao, idConsulta } = req.body
 
@@ -995,7 +996,7 @@ app.post("/registarId", async (req, res)=>{
     }
 })
 
-app.post("/buscarId", async (req, res)=>{
+app.post("/buscarId",verificadorDeSessao, async (req, res)=>{
 
     const {id : idConsulta} = req.body
 
@@ -1032,7 +1033,7 @@ app.post("/buscarId", async (req, res)=>{
 
 })
 
-app.get("/meuMeet/:idConsulta", async (req, res)=>{
+app.get("/meuMeet/:idConsulta",verificadorDeSessao, async (req, res)=>{
 
     const {idConsulta} = req.params
     const {userId, idAdvogado, privilegio, nomeDoUser} = req.session

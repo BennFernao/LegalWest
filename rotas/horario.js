@@ -7,9 +7,10 @@ const verificadorDaSessao = require("../midleware/verificadorDaSessao")
 const Horario = require("../database/horarios/model")
 const Consulta = require("../database/consulta/consultas")
 const {Op} = require("sequelize")
+const verificadorDeSessaoSuperAdmin = require("../midleware/verificadorDaSessaoSuperAdmin")
 
 
-app.put("/atualizar" , verificadorDaSessao ,  async(req, res)=>{
+app.put("/atualizar" , verificadorDeSessaoSuperAdmin ,  async(req, res)=>{
 
     let { horario, dias} = req.body
     

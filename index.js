@@ -53,6 +53,7 @@ const consultaEndpoints = require("./rotas/consulta")
 const horarioEndpoints = require("./rotas/horario")
 const especialidadeEndpoints = require("./rotas/especialidade")
 const meetEndpoints = require("./rotas/meet")
+const videoEndpoints = require("./rotas/video")
 
 
 // middlewares
@@ -65,6 +66,7 @@ app.use("/api/consulta", consultaEndpoints)
 app.use("/api/horario", horarioEndpoints)
 app.use("/api/especialidade", especialidadeEndpoints)
 app.use("/api/meet", meetEndpoints)
+app.use("/api/video", videoEndpoints)
 
 
 // Importação de todos modelos dos banco de dados
@@ -76,6 +78,7 @@ const User = require("./database/user/model")
 const Consulta = require("./database/consulta/consultas")
 const Horario = require("./database/horarios/model")
 const Especialidade = require("./database/especialidade/model")
+const Video = require("./database/video/model")
 
 
 
@@ -193,7 +196,7 @@ async function inicializarApp(){
 }
 
 
-connetion.sync({alter: true})
+connetion.sync()
                 .then(()=>{
                         inicializarApp()
                         console.log("Banco de dados inicializado com sucesso")

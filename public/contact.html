@@ -412,66 +412,6 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    <script>
-
-        const botaoEnviar = document.getElementById("botaoEnviar")
-
-        botaoEnviar.addEventListener("click", async ()=>{
-
-            const nome = document.getElementById("name").value
-            const email = document.getElementById("email").value
-            const assunto = document.getElementById("subject").value
-            const mensagem  = document.getElementById("message").value
-
-            
-
-            if(nome && email && assunto && mensagem ){
-                
-                console.log(nome, email, assunto, mensagem)
-                const resposta = await fetch("/email/entrarEmContacto", {
-                    method: "POST",
-                    body : JSON.stringify({nome, email, assunto , mensagem }),
-                    headers:{"Content-Type":"application/json"}
-                }).then((res)=> res.json())
-                .catch((error)=> Error("erro ao enviar a messagem"))
-
-                if(resposta[0] == "sucesso"){
-                    const alerta = document.getElementById("alerta")
-                    alerta.setAttribute("class", "alert alert-primary")
-                    alerta.innerHTML = "<p>Messagem enviada com sucesso, contactaremos em breve</p>"
-                    setTimeout(()=>{
-                        alerta.setAttribute("class", "")
-                        alerta.innerHTML = ""
-                    }, 3000)
-                }else{
-
-                    console.log(resposta)
-
-                    const alerta = document.getElementById("alerta")
-                    alerta.setAttribute("class", "alert alert-danger")
-                    alerta.innerHTML = "<p>Erro ao enviar a  mensagem, tente novamente</p>"
-                    setTimeout(()=>{
-                        alerta.setAttribute("class", "")
-                        alerta.innerHTML = ""
-                    }, 3000)
-
-                }
-            }else{
-
-                const alerta = document.getElementById("alerta")
-                    alerta.setAttribute("class", "alert alert-danger")
-                    alerta.innerHTML = "<p>Preencha todos os campos</p>"
-                    setTimeout(()=>{
-                        alerta.setAttribute("class", "")
-                        alerta.innerHTML = ""
-                    }, 3000)
-
-            }
-
-
-        })
-    
-    </script>
 </body>
 
 </html>

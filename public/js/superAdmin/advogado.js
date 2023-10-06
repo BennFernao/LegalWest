@@ -1,6 +1,41 @@
 let id_atual = ""
 
 const botaoEnviar = document.querySelector(".criarConta")
+const botaoDeletarAdvogado = document.getElementById("botaoDeletarAdvogado")
+
+
+botaoDeletarAdvogado.addEventListener("click", (e)=>{
+
+  
+
+    if(id_atual){
+
+        fetch(`/api/lawyers/deleteLawyer/${id_atual}`)
+        .then((res)=> {
+            console.log(res)
+            return res.json()})
+        .then((result)=>{
+
+            if(result[0] == "erro"){
+                console.log(result, "result")
+                alert("ocorreu um erro ao eliminar o advogado, tente novamente")
+                
+            }else{
+
+                inicializadorAdvogado()
+                
+                console.log(result)
+            }
+        })
+        .catch((erro)=> {
+            console.log(erro)
+            alert("ocorreu um erro ao eliminar o advogado, tente novamente")
+        
+        })
+    }
+})
+
+
 
 botaoEnviar.addEventListener("click", async (e)=>{
 console.log("Correto")
@@ -17,7 +52,7 @@ console.log(nome, sobrenome, email, telefone,  id_atual)
 
 if(nome && sobrenome && email && telefone  ){
 
-    const resposta =  await fetch("/user/adicionarUserAdmin", {
+    const resposta =  await fetch("/api/user/adicionarUserAdmin", {
         method: "POST",
         body: JSON.stringify({
             nome,
@@ -44,35 +79,36 @@ const container = document.querySelector(".dadosDoAdvogado")
 const botaoAtualizar = document.querySelector(".botaoAtualizar")
 botaoAtualizar.addEventListener("click", async ()=>{
 
-let formularioAT = document.querySelector(".formularioAT")
-formularioAT = new FormData(formularioAT)
+        let formularioAT = document.querySelector(".formularioATUALIZAR")
+        formularioAT = new FormData(formularioAT)
 
-const resposta = await atualizarAdvogado(id_atual, formularioAT)
+        const resposta = await atualizarAdvogado(id_atual, formularioAT)
 
-if(!(resposta instanceof Error)){      
-    setTimeout(()=> location.reload(), 1000 )
-}else{
+       
 
-    const alerta = document.querySelector(".alerta")
-    alerta.innerHTML = "<p> Erro ao editar o advogado, tente novamente </p>"
+        if(!(resposta instanceof Error)){      
+            setTimeout(()=> location.reload(), 1000 )
+        }else{
 
-}
+            const alerta = document.querySelector(".alerta")
+            alerta.innerHTML = "<p> Erro ao editar o advogado, tente novamente </p>"
 
-async function atualizarAdvogado(idAdvogado, novosDados){
+        }
 
-        const resposta = await  fetch(`/api/lawyers/editLawyer/${id_atual}`, {
-            method: "POST",
-            body: formularioAT 
+        async function atualizarAdvogado(idAdvogado, novosDados){
 
-            }).then((res)=> res.json())
-                .then((res)=> res)
-                .catch((erro)=> new Error("Erro ao buscar dados"))
+                const resposta = await  fetch(`/api/lawyers/editLawyer/${idAdvogado}`, {
+                    method: "POST",
+                    body: novosDados
 
-        console.log(resposta)
+                    }).then((res)=> res.json())
+                        .then((res)=> res)
+                        .catch((erro)=> new Error("Erro ao buscar dados"))
 
-        return resposta
-}
+                console.log(resposta)
 
+                return resposta
+        }
 })
 
 
@@ -97,7 +133,6 @@ botaoAdicionar.addEventListener("click", ()=>{
 
 function escreverAdvogado(advogado){
 
-        
         
         const div_1 = document.createElement("div")
         div_1.setAttribute("class", "d-flex justify-content-between  align-items-center w-100 mt-5 p-2 ")
@@ -169,13 +204,13 @@ function escreverAdvogado(advogado){
                             nome.setAttribute("value", res.nome  ) 
                             escritorio.setAttribute("value", res.escritorio  ) 
                             descricao.innerText = res.descricao
-                            console.log(nome.getAttribute("value"), escritorio.value)
+                            
 
 
                         })
                         .catch((error)=>{
 
-                            console.log(error)
+                            
 
                             deleteLoadingText()
                             writeErrorText()
@@ -210,9 +245,10 @@ function escreverAdvogado(advogado){
                         const paragrafo = document.createElement("p")
                         paragrafo.innerText =  `tem certeza que pretende eliminar o advogado ${advogado.nome} ?`
 
+                        modal_deletar.innerHTML = ""
                         modal_deletar.appendChild(paragrafo)
 
-                        })
+                    })
                 
 
                     const img_4 = document.createElement("img")

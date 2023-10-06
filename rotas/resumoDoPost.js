@@ -10,8 +10,7 @@ const fs = require("fs")
 
 
 const multer = require("multer")
-const { error } = require("console")
-const enviarEmail = require("../email/nodemail")
+
 const storage = multer.diskStorage({
 
     destination: function(req, file, cb){
@@ -482,7 +481,7 @@ try {
 })
 
 
-app.get("/deletePost/:id", verificadorDeSessao, async (req, res)=>{
+app.get("/deletePost/:id", verificadorDeSessaoSuperAdmin , async (req, res)=>{
 
     const id = req.params.id
      if(id){
