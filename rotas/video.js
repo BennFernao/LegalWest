@@ -9,6 +9,7 @@ const verificadorDaSessaoSuperAdmin = require("../midleware/verificadorDaSessaoS
 const multer = require("multer")
 const { Op } = require("sequelize")
 const fs = require("fs")
+const redisClient = require("../redis/connect")
 
 const storage = multer.diskStorage({
 
@@ -67,9 +68,21 @@ app.post("/adicionarVideo", upload.fields([{name:"thumbnail", maxCount:1}, {name
 app.get("/lerVideos",   async (req, res)=>{
 
     try {
-        
-        const videos = await Video.findAll()
-        res.send(videos)
+
+
+        let videos_no_cache = await redisClient.get("videos")
+
+        if(videos_no_cache){
+
+            videos_no_cache = JSON.parse(videos_no_cache)
+            res.send(videos_no_cache)
+        }else{
+
+            const videos = await Video.findAll()
+            await redisClient.set("videos",JSON.stringify(videos))
+            res.send(videos)
+        }
+
 
     } catch (error) {
 
@@ -174,7 +187,7 @@ app.delete("/deleteVideo/:id",  async (req, res)=>{
 
         res.send(["erro", "dados incorretos"])
      }
-  })
+})
 
 
 app.get("/apresentarVideo/:id", async (req, res)=>{

@@ -7,6 +7,7 @@ const path = require("path")
 const multer = require("multer")
 const verificadorDeSessao = require("../midleware/verificadorDaSessao")
 const verificadorDeSessaoSuperAdmin = require("../midleware/verificadorDaSessaoSuperAdmin")
+const redisClient = require("../redis/connect")
 
 const storage = multer.diskStorage({
 
@@ -471,15 +472,29 @@ app.get("/nossoAdvogado/:id", async (req, res)=>{
     }
 })
 
-app.get("/showLawyers",verificadorDeSessao, async (req , res)=>{
+app.get("/showLawyers" , verificadorDeSessao, async (req , res)=>{
 
-    try {        
-            let todosAdvogados = await Advogado.findAll()
-                
-            res.send(todosAdvogados)
+    try {     
+
+            let todosAdvogados_em_cache = await redisClient.get("todosAdvogados")
+
             
+
+            if(todosAdvogados_em_cache){
+
+                todosAdvogados_em_cache = JSON.parse(todosAdvogados_em_cache)
+                res.send(todosAdvogados_em_cache)
+
+            }else{
+
+                let todosAdvogados = await Advogado.findAll()
+                await redisClient.set("todosAdvogados", JSON.stringify(todosAdvogados))
+                res.send(todosAdvogados)
+            }
+
+      
     } catch (error) {
-            
+            console.log(error)
             res.send(["erro", "erro ao buscar os dados"])
             
         }
