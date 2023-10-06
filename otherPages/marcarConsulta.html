@@ -340,8 +340,24 @@
 
                     </div>
 
+                    <div style="width: 100%;display: flex; flex-direction: column;justify-content: center;align-items: center;margin-top: 15px;">
+
+                        <div class="spinner-grow  carregador" role="status">                   
+                        </div> 
+
+                        
+                        <p class="paragrafoAguardando">Carregando advogados...</p>                        
+                        
 
                     </div>
+
+
+
+
+                    </div>
+
+
+
 
                     <div class="containerAdvogados p-2">
 
@@ -616,7 +632,10 @@
         const divEtapa2 = document.querySelector(".etapa2")
         const divEtapa3 = document.querySelector(".etapa3")
 
+
         async function inicializadorEtapaUm(){
+
+
 
             let elementoSelecionado = null
 
@@ -629,11 +648,32 @@
             const containerFinalizacao = document.querySelector(".containerFinalizacao")
             const botaoProximo1 = document.querySelector(".proximo1")
 
-            
 
 
-            let  advogados = await buscarAdvogados()
+            const paragrafoAguardando = document.querySelector(".paragrafoAguardando")
+            const carregador = document.querySelector(".carregador")
+
+        
+
+            let  advogados = await buscarAdvogados()     
             let especialidades = await buscarEspecialidades()
+
+            if(advogados[0] !== "erro" && especialidades[0] !== "erro"){
+
+                paragrafoAguardando.innerText = ""
+                carregador.style.display = "none"
+
+            }else{
+
+                alertaSobrePosts.innerHTML = "<p>Erro ao buscar advogados, tente novamente"
+                carregador.style.display = "none"
+
+
+
+
+            }
+
+
 
             botaoProximo1.addEventListener("click", ()=>{ proximaEtapaUm(divEtapa1, divEtapa2, containerAlert)})
 
@@ -720,7 +760,7 @@
             function escreverAdvogado({advogado, container, posicao, selecionado }){
 
                     const div_1 = document.createElement("div")
-                    div_1.setAttribute("class", "d-flex justify-content-between  align-items-center w-100 mt-5 p-2 ")
+                    div_1.setAttribute("class", "d-flex justify-content-between  align-items-center w-100 mt-2 p-2 ")
                     div_1.style.borderRadius = "5px"
                     div_1.style.backgroundColor = "#FDFBFB"
 
@@ -744,7 +784,7 @@
                                 div_1_1_1.appendChild(nome)
 
                                 const dataDeAtuazacao = document.createElement("p")
-                                dataDeAtuazacao.innerText = `atualizado aos ${advogado.updatedAt.slice(0, 10)}, ${advogado.updatedAt.slice(11, 16)}`
+                                dataDeAtuazacao.innerText = ` ${advogado.escritorio}`
 
                                 div_1_1_1.appendChild(dataDeAtuazacao)
 
@@ -768,12 +808,6 @@
                                 label.className = "btn btn-outline-secondary"
                                 label.innerText = selecionado ?  "Selecionado" : "Selecionar"
                                 label.setAttribute("for", `option${posicao}`)
-
-                                
-                                
-
-                                
-
 
                                 radio.addEventListener("click", (e)=>{
 

@@ -115,7 +115,7 @@
                     setTimeout(()=>{
 
                         if(localStorage.getItem("goTo")){
-                            location.href = `/api/${localStorage.getItem("goTo")}`                            
+                            location.href = `/api${localStorage.getItem("goTo")}`                            
                         }else{
                             location.href = "/api/user/dashboard"
                         }

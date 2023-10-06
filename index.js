@@ -197,11 +197,11 @@ async function inicializarApp(){
 
 
 connetion.sync()
-                .then(()=>{
+            .then(()=>{
                         inicializarApp()
                         console.log("Banco de dados inicializado com sucesso")
                     })
-                .catch((erro)=>{
+            .catch((erro)=>{
                         console.log("Erro ao inicializar o banco de dados", erro)
                     })
 
@@ -247,16 +247,17 @@ app.post("/api/upload", upload.single("imagem") ,async (req, res)=>{
 
 app.get("/api/marcarConsulta", (req, res)=>{
 
-
+/*
     if(req.session.userId){
-
+*/
         res.sendFile(path.join(__dirname,  "otherPages", "marcarConsulta.html"))
 
+        /*
     }else{
 
         res.sendFile(path.join(__dirname,  "otherPages", "loginParaConsulta.html"))
         
-    }
+    }*/
     
 })
 

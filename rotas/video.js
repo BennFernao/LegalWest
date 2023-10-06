@@ -297,17 +297,18 @@ app.get("/apresentarVideo/:id", async (req, res)=>{
                                 <!--Navegação-->
                                 <div class=" p-4">
                                     <div class="navbar-nav mr-auto py-0 ml-auto " >
-                                        <a href="index.html" class="nav-item nav-link  text-white">Home</a>
-                                        <a href="team.html" class="nav-item nav-link text-white">Equipa</a>
-                                        <a href="locations.html" class="nav-item nav-link text-white">Localizações</a>
-                                        <a href="contact.html" class="nav-item nav-link text-white">Contacto</a>
+                                        <a href="/index.html" class="nav-item nav-link  text-white">Home</a>
+                                        <a href="/team.html" class="nav-item nav-link text-white">Equipa</a>
+                                        <a href="/locations.html" class="nav-item nav-link text-white">Localizações</a>
+                                        <a href="/contact.html" class="nav-item nav-link text-white">Contacto</a>
             
                                         <div class="nav-item dropdown" >
                                             <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Quem somos</a>
                                             <div class="dropdown-menu rounded-0 m-0 bg-secondary">
-                                                <a href="service.html" class="dropdown-item text-white">Serviços</a>
-                                                <a href="about.html" class="dropdown-item text-white">informações</a> 
-                                                <a href="blog.html" class="dropdown-item text-white">Blog</a>    
+                                                <a href="/service.html" class="dropdown-item text-white">Serviços</a>
+                                                <a href="/about.html" class="dropdown-item text-white">informações</a> 
+                                                <a href="/blog.html" class="dropdown-item text-white">Blog</a>
+                                                <a href="/video.html" class="dropdown-item text-white">video</a>    
                                             </div>
                                         </div>
             
@@ -327,7 +328,7 @@ app.get("/apresentarVideo/:id", async (req, res)=>{
                                                     <div class=" dropdown-menu rounded-0 m-0">
                                                         <div class="d-flex justify-content-center align-items-center">
                                                             <img src="/img/english.png" style="width: 20px; height: 20px;margin-right: 2px;"/> 
-                                                            <a href="../en/blog.html" class="dropdown-item lang">English</a>
+                                                            <a href="/en/video.html" class="dropdown-item lang">English</a>
                                                         </div>                                
                                                     </div>
                                                 </div>
@@ -343,7 +344,7 @@ app.get("/apresentarVideo/:id", async (req, res)=>{
                                     <a href="/api/user/logar">
                                     <button class="btn btn-outline-primary mr-3">
                                         <div class="d-flex justify-content-center align-items-center">
-                                            <img src="./img/user.svg" class="mr-2 usernameIcon" width="30px" />
+                                            <img src="/img/user.svg" class="mr-2 usernameIcon" width="30px" />
                                             <span class="username">Entrar</span>
                                         </div>             
                                     </button>
@@ -361,17 +362,18 @@ app.get("/apresentarVideo/:id", async (req, res)=>{
             
                             <!--Navegacao-->
                             <div class="navbar-nav mr-auto py-0 " >
-                                <a href="index.html" class="nav-item nav-link text-white">Home</a>
-                                <a href="team.html" class="nav-item nav-link text-white">Equipa</a>
-                                <a href="locations.html" class="nav-item nav-link text-white">Localizações</a>
-                                <a href="contact.html" class="nav-item nav-link text-white">Contacto</a>
+                                <a href="/index.html" class="nav-item nav-link text-white">Home</a>
+                                <a href="/team.html" class="nav-item nav-link text-white">Equipa</a>
+                                <a href="/locations.html" class="nav-item nav-link text-white">Localizações</a>
+                                <a href="/contact.html" class="nav-item nav-link text-white">Contacto</a>
             
                                 <div class="nav-item dropdown" >
                                     <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Quem somos</a>
                                     <div class="dropdown-menu rounded-0 m-0 bg-secondary">
-                                        <a href="service.html" class="dropdown-item text-white">Serviços</a>
-                                        <a href="about.html" class="dropdown-item text-white">informações</a> 
-                                        <a href="blog.html" class="dropdown-item text-white">Blog</a>    
+                                        <a href="/service.html" class="dropdown-item text-white">Serviços</a>
+                                        <a href="/about.html" class="dropdown-item text-white">informações</a> 
+                                        <a href="/blog.html" class="dropdown-item text-white">Blog</a>   
+                                        <a href="/video.html" class="dropdown-item text-white">videos</a> 
                                     </div>
                                 </div>
             

@@ -94,9 +94,10 @@
                                <div class="nav-item dropdown" >
                                    <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">Quem somos</a>
                                    <div class="dropdown-menu rounded-0 m-0 bg-secondary">
-                                       <a href="service.html" class="dropdown-item text-white">Serviços</a>
-                                       <a href="about.html" class="dropdown-item text-white">informações</a> 
-                                       <a href="blog.html" class="dropdown-item text-white">Blog</a>    
+                                       <a href="/service.html" class="dropdown-item text-white">Serviços</a>
+                                       <a href="/about.html" class="dropdown-item text-white">informações</a> 
+                                       <a href="/blog.html" class="dropdown-item text-white">Blog</a> 
+                                       <a href="/video.html" class="dropdown-item text-white">Video</a>    
                                    </div>
                                </div>
 
@@ -115,7 +116,7 @@
                                         <div class=" dropdown-menu rounded-0 m-0 bg-secondary">
                                              <div class="d-flex justify-content-center align-items-center">
                                                  <img src="/img/english.png" style="width: 20px; height: 20px;margin-right: 2px;"/> 
-                                                 <a href="../en/team.html" class="dropdown-item lang text-white">English</a>
+                                                 <a href="/en/team.html" class="dropdown-item lang text-white">English</a>
                                              </div>                                
                                         </div>
                                     </div>
@@ -145,7 +146,7 @@
                <div class="d-none d-lg-flex flex-row justify-content-start align-items-center w-100 " >
 
                    <!--Logotipo-->
-                   <img src="./img/LegalWest.png" alt="Logotipo Legalwest" width="100px" class="img-fluid d-none d-lg-flex" >
+                   <img src="/img/LegalWest.png" alt="Logotipo Legalwest" width="100px" class="img-fluid d-none d-lg-flex" >
 
                    <!--Navegacao-->
                    <div class="navbar-nav mr-auto py-0 " >
@@ -157,9 +158,10 @@
                        <div class="nav-item dropdown" >
                            <a href="#" class="nav-link dropdown-toggle text-white" data-toggle="dropdown">Quem somos</a>
                            <div class="dropdown-menu rounded-0 m-0 bg-secondary">
-                               <a href="service.html" class="dropdown-item text-white">Serviços</a>
-                               <a href="about.html" class="dropdown-item text-white">informações</a> 
-                               <a href="blog.html" class="dropdown-item text-white">Blog</a>    
+                               <a href="/service.html" class="dropdown-item text-white">Serviços</a>
+                               <a href="/about.html" class="dropdown-item text-white">informações</a> 
+                               <a href="/blog.html" class="dropdown-item text-white">Blog</a>  
+                               <a href="/video.html" class="dropdown-item text-white">Video</a>   
                            </div>
                        </div>
 
@@ -254,7 +256,13 @@
         <div class="container py-5">
 
             
-            <p id="loadingItem">Carregando</p>
+        <div class="spinner-grow  carregador" role="status">
+                            
+        </div> 
+          <div class="alertaSobrePosts">
+              
+
+          </div>
             <div class="row"  id="carouselContainer">
 
             </div>
@@ -410,10 +418,11 @@
             function writeLawyer (lawyer){
     
                 const advogadoImage = document.createElement("div")
+                advogadoImage.style.marginBottom = "100px"
                 advogadoDiv.style.backgroundColor = "white"
                 advogadoDiv.style.borderTopLeftRadius = "5px"
                 advogadoDiv.style.borderTopRightRadius = "5px"
-                advogadoImage.setAttribute("class", "col-lg-4 col-sm-12 w-100 mt-5")
+                advogadoImage.setAttribute("class", "col-lg-4 col-sm-12 w-100 mt-5 ")
                 
     
     
@@ -505,6 +514,15 @@
     
             }
     
+
+            const alertaSobrePosts = document.querySelector(".alertaSobrePosts")
+
+
+            const paragrafoAguardando = document.querySelector(".paragrafoAguardando")
+            alertaSobrePosts.innerHTML = "<p> Carregando os advogados, aguarde alguns segundos</p>"
+
+            const carregador = document.querySelector(".carregador")
+
             fetch("/api/lawyers/showLawyers", {
                 method:"GET",
                 credentials:"include",
@@ -518,21 +536,25 @@
 
                     if(res.length > 0){
 
+
+                        alertaSobrePosts.innerHTML = ""
+                        carregador.style.display = "none"
                         
                         for (let i = 0; i < res.length; i++) {
 
-                        deleteLoadingText()
-                        writeLawyer(res[i])  
+                        
+                            writeLawyer(res[i])  
 
-                            }
+                        }
 
                     }else{
-                        deleteLoadingText()
-                        writeNoneLawyerText()
+                        alertaSobrePosts.innerHTML = "<p>Nenhum Advogado registado  até ao  momento"
+                        carregador.style.display = "none"
                     }
                 }else{
 
-                    writeErrorText()
+                    alertaSobrePosts.innerHTML = "<p>Erro ao buscar advogados, tente novamente"
+                    carregador.style.display = "none"
                 }
     
                  
@@ -540,8 +562,8 @@
             .catch((error)=>{
     
     
-                deleteLoadingText()
-                writeErrorText()
+                alertaSobrePosts.innerHTML = "<p>Erro ao buscar advogados, tente novamente"
+                carregador.style.display = "none"
             })
     
             
