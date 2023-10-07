@@ -201,7 +201,7 @@ app.get("/apresentarVideo/:id", async (req, res)=>{
 
         if(video){
 
-            const srcVideo = video.srcVideo 
+            const {srcVideo, titulo, descricao }= video
             
             const outros_videos = await Video.findAll({limit:4})
           
@@ -458,8 +458,8 @@ app.get("/apresentarVideo/:id", async (req, res)=>{
                         
             
                         <div style=" width: 640px;max-width:100%;margin-top:10px;">  
-                            <h5  >Novo Video</h5>
-                            <p>Teste numero um </p>
+                            <h5  >${titulo}</h5>
+                            <p>${descricao} </p>
                         </div>
             
             

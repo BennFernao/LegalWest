@@ -472,13 +472,11 @@ app.get("/nossoAdvogado/:id", async (req, res)=>{
     }
 })
 
-app.get("/showLawyers" , verificadorDeSessao, async (req , res)=>{
+app.get("/showLawyers" , async (req , res)=>{
 
     try {     
 
             let todosAdvogados_em_cache = await redisClient.get("todosAdvogados")
-
-            
 
             if(todosAdvogados_em_cache){
 

@@ -398,12 +398,21 @@
                                 
                                 <div class="card mb-3 border-light" > 
 
-                                            <img src="/img/${element.srcThumbnail}" class="img-fluid rounded-start  w-100  alt="..."  style="height:300px" >                 
-                                            
+                                        <a href="/api/video/apresentarVideo/${element.id}"><span class="text-primary" style="font-weight:900; font-size:18px">
+                                            <div style="position: relative; height:300px"> 
+                                                <img src="/img/${element.srcThumbnail}" class="img-fluid rounded-start  w-100  alt="..."  style="height:300px" >
+                                                
+                                                <div style="position:absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);width: 50px;height: 50px;border-radius: 50px; background-color: #fff;border-color: #000; border-style: solid; display: flex;flex-direction: row;justify-content: center;align-items: center;">
+                                                    <img src="/img/play.svg"/> 
+                                                </div>  
+                                                               
+                                            </div>
+                                        </a>
+
                                             <div class="card-body">      
                                                     <p>Aos ${element.createdAt.slice(11, 16)},  ${element.createdAt.slice(0, 10)}  </p>
                                                     <h5 class="card-title text-secondary ">${element.titulo}</h5>
-                                                    <a href="/api/video/apresentarVideo/${element.id}"><span class="text-primary" style="font-weight:900; font-size:18px">Assistir</span></a>
+                                                    
                                             </div>
                                     
                                 </div>       
