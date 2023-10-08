@@ -568,9 +568,11 @@ app.get("/deleteLawyer/:id",verificadorDeSessaoSuperAdmin, async (req, res)=>{
     const id = req.params.id
 
     try {
-        const updated =  await Advogado.destroy({where:{
+        const advogado_eliminado=  await Advogado.destroy({where:{
             id
         }})
+
+        console.log(advogado_eliminado)
 
         res.send(["sucesso", "Advogado eliminado com sucesso"])
         

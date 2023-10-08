@@ -373,8 +373,9 @@
                     </div>
                     -->
 
-                    <div id="containerAlert" class=" p-2">
-
+                    <div class="p-5">  
+                        <div id="containerAlert" class=" p-2">
+                        </div>
                     </div>
 
                     <div id="botaoConfirmar" class="d-flex justify-content-end  pr-3 pb-2">
@@ -388,7 +389,7 @@
             <div style="display: none; background-color: #ffffff; border-color: #000; border-width: 1px; border-style: solid; border-radius: 5px;" class="etapa2 z-3 position-relative etapa1"> 
                 <h4 class="pt-5 text-center">Marcação da consulta por video chamada</h4>
                 <div class="d-flex justify-content-center " >   
-                    <div id="etapas" class="d-flex justify-content-between align-items-center p-5">
+                        <div id="etapas" class="d-flex justify-content-between align-items-center p-5">
                         <div class="row w-100 pl-5 pr-5 " >
                             <div class="col-4 p-2 "  >
                                 <div id="etapa1" >
@@ -428,11 +429,15 @@
 
                 </div>
 
-                <div id="alerta2">
+                <div class="p-5">  
+                    <div id="alerta2">
 
+                    </div>
                 </div>
 
-                <div  class="d-flex justify-content-end  p-5">
+                <div  class="d-flex justify-content-between  p-5">
+
+                    <button class="btn btn-primary botaoAnterior2">Anterior</button>
                     <button class="btn btn-primary proximo2">Próximo</button>
                 </div>
             </div>
@@ -490,7 +495,7 @@
                         </div>
                 
                         <div id="botaoConfirmar" class="d-flex justify-content-between mt-5">
-                            <button class="btn btn-primary etapa2Voltar ">Anterior</button>
+                            <button class="btn btn-primary botaoAnterior3 ">Anterior</button>
                             <button class="btn btn-primary finalizar">Finalizar</button>
                         </div>
                 
@@ -657,34 +662,36 @@
 
             let  advogados = await buscarAdvogados()     
             let especialidades = await buscarEspecialidades()
+            let copiaDeAdvogados = null
 
             if(advogados[0] !== "erro" && especialidades[0] !== "erro"){
 
                 paragrafoAguardando.innerText = ""
                 carregador.style.display = "none"
+                copiaDeAdvogados = advogados.map((item, pos)=> item)
+
+
 
             }else{
 
                 alertaSobrePosts.innerHTML = "<p>Erro ao buscar advogados, tente novamente"
                 carregador.style.display = "none"
-
-
-
-
             }
 
 
 
             botaoProximo1.addEventListener("click", ()=>{ proximaEtapaUm(divEtapa1, divEtapa2, containerAlert)})
 
+
             opcoesDeAdvogados.addEventListener("change",  (e)=>{
 
                 const  valor = e.target.value   
                 
                 
-                const advogado = advogados[valor]
+                const advogado = copiaDeAdvogados[valor]
 
                 containerAdvogados.innerHTML = ""
+                advogados = [advogado]
                 escreverAdvogado({advogado, container: containerAdvogados, posicao: valor, selecionado : false })
       
             })
@@ -752,8 +759,6 @@
             }else{
                  
                 // manipular o erro
-
-
             }
 
 
@@ -805,7 +810,7 @@
                                 radio.autocomplete = "off"
 
                                 const label = document.createElement("label")
-                                label.className = "btn btn-outline-secondary"
+                                label.className = selecionado ? "btn btn-secondary" : "btn btn-outline-secondary"
                                 label.innerText = selecionado ?  "Selecionado" : "Selecionar"
                                 label.setAttribute("for", `option${posicao}`)
 
@@ -850,9 +855,11 @@
 
 
                 if(!(advogadoEscolhido == null)){
-                    await inicializadorEtapaDois(advogadoEscolhido.id)
+
                     divEtapaAtual.style.display = "none"
                     divProximaEtapa.style.display = "block"
+                    await inicializadorEtapaDois(advogadoEscolhido.id)
+ 
 
                 }else{
 
@@ -864,7 +871,6 @@
                         divAlert.className = ""
                         divAlert.innerText = ""
 
-
                     }, 5000)
 
                 }    
@@ -872,8 +878,6 @@
             }
 
         inicializadorEtapaUm()
-
-
 
         async function inicializadorEtapaDois(idAdvogado){
 
@@ -883,6 +887,18 @@
             })
 
             const containerAlert2 = document.querySelector("#alerta2")
+            const botaoAnterior2 = document.querySelector(".botaoAnterior2")
+
+            botaoAnterior2.addEventListener("click", (e)=>{
+
+                divEtapa1.style.display = "block"
+                divEtapa2.style.display = "none"
+
+                scrollTo({
+                top: 50,
+                behavior:"smooth"
+                })     
+            })
 
             const {dias: arrayDisponibilidade, horarios : horariosIndicativos } = await horarioDisponibilidade() 
             const consultasDoAdvogado = await buscarAdvogadoConsultasAtivasDeUmAdvogado(idAdvogado)   
@@ -947,6 +963,8 @@
             const opcoesDias = document.querySelector(".opcoesDias")
             const opcoesHorariosDisponiveis = document.querySelector(".opcoesHorarioDisponiveis")
 
+            opcoesDias.innerHTML = ""
+
             estruturaDosDias.forEach((hor,i)=>{
             
                     const option = document.createElement("option")
@@ -983,7 +1001,6 @@
 
         })
 
-
             opcoesHorariosDisponiveis.addEventListener("change", (e)=>{
 
                 const pos = e.target.value 
@@ -1014,7 +1031,7 @@
                     }else{
 
                         divAlert.className = "alert alert-danger"
-                            divAlert.innerText = "Selecione um advogado para a consulta"
+                        divAlert.innerText = "Selecione um horario para a sua reunião"
 
                         setTimeout(()=>{
 
@@ -1042,6 +1059,19 @@
             dataMarcada.innerText = dataEscolhida
             horarioMarcado.innerText = horarioEscolhido
             advogadoMarcado.innerText = advogadoEscolhido.nome
+
+            const botaoAnterior3 = document.querySelector(".botaoAnterior3")
+
+            botaoAnterior3.addEventListener("click", (e)=>{
+
+                divEtapa2.style.display = "block"
+                divEtapa3.style.display = "none"
+
+                scrollTo({
+                    top: 50,
+                    behavior:"smooth"
+                })     
+            })
 
 
             const finalizar = document.querySelector(".finalizar")

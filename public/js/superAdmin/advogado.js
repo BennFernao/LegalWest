@@ -194,6 +194,7 @@ function escreverAdvogado(advogado){
                         }).then((res)=> res.json())
                         .then(res=>{
 
+                            console.log(res)
                             
 
                             const modalEditar = document.getElementById("modal-editar")

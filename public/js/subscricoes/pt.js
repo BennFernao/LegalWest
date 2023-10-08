@@ -7,7 +7,7 @@ botaoSubscrever.addEventListener("click", async ()=>{
 
         if(email ){
                 
-                const resposta = await fetch("/email/subscrever", {
+                const resposta = await fetch("/api/email/subscrever", {
                     method: "POST",
                     body : JSON.stringify({email}),
                     headers:{"Content-Type":"application/json"}
