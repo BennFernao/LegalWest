@@ -380,7 +380,7 @@ app.get("/lerConsultas",verificadorDeSessaoSuperAdmin, async (req, res)=>{
 })
 
 
-app.post("/lerConsultasAtivasDeUmAdvogado",verificadorDaSessao, async (req, res)=>{
+app.post("/lerConsultasAtivasDeUmAdvogado", async (req, res)=>{
 
     const {id} = req.body
 

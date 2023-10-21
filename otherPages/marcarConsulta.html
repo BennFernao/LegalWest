@@ -911,6 +911,7 @@
             const intervaloEmMinutos = converterParaMinutos(intervalo)
             let horariosPermitidos = calcularHoras(horaInicial, horaFinal, intervaloEmMinutos)
 
+            console.log(consultasDoAdvogado, arrayDisponibilidade)
             const estruturaDeDisponibilidade = estruturar(arrayDisponibilidade, consultasDoAdvogado)
             const estruturaDosDias = []
 
@@ -976,15 +977,12 @@
 
             opcoesDias.addEventListener("change", (e)=>{
 
-            console.log("ok")
-
+      
             const pos = e.target.value
             dataEscolhida =  estruturaDosDias[pos].data
             horarioEscolhido = estruturaDosDias[pos].horarios[0]
             opcoesHorariosDisponiveis.innerHTML = ""
 
-            
-            console.log(estruturaDosDias)
             estruturaDosDias[pos].horarios.forEach((valor, i)=>{
 
                 const option = document.createElement("option")
@@ -1128,8 +1126,18 @@
                 body:JSON.stringify({id}),
                 headers:{"content-type":"application/json"}
 
-            }).then((res)=> res.json())
-                .catch((error)=>["erro", "erro ao buscar dados"])
+            }).then(async (res)=> {
+
+                const dados = await res.json()
+                
+                return dados})
+
+                .catch((error)=>{
+                
+                    console.log(error)
+                   return   ["erro", "erro ao buscar dados"]
+                }
+                    )
 
            
             return resposta
@@ -1284,6 +1292,7 @@
                   
                     horariosMarcados.forEach((item, pos)=>{
                         const posicao = posicaoOriginalDosDiasAjustados.indexOf(item.diaDaConsulta)
+                        
                         estrutura[posicao].horariosOcupados.push(item.data)
                     })
 

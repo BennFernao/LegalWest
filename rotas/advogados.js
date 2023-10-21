@@ -192,7 +192,8 @@ app.get("/nossoAdvogado/:id", async (req, res)=>{
                                            <div class="dropdown-menu rounded-0 m-0 bg-secondary">
                                                <a href="/service.html" class="dropdown-item text-white">Serviços</a>
                                                <a href="/about.html" class="dropdown-item text-white">informações</a> 
-                                               <a href="/blog.html" class="dropdown-item text-white">Blog</a>    
+                                               <a href="/blog.html" class="dropdown-item text-white">Blog</a> 
+                                               <a href="/video.html" class="dropdown-item text-white">Videos</a>    
                                            </div>
                                        </div>
         
@@ -211,7 +212,7 @@ app.get("/nossoAdvogado/:id", async (req, res)=>{
                                                 <div class=" dropdown-menu rounded-0 m-0 bg-secondary">
                                                      <div class="d-flex justify-content-center align-items-center">
                                                          <img src="/img/english.png" style="width: 20px; height: 20px;margin-right: 2px;"/> 
-                                                         <a href="../en/team.html" class="dropdown-item lang text-white">English</a>
+                                                         <a href="/en/team.html" class="dropdown-item lang text-white">English</a>
                                                      </div>                                
                                                 </div>
                                             </div>
@@ -255,7 +256,8 @@ app.get("/nossoAdvogado/:id", async (req, res)=>{
                                    <div class="dropdown-menu rounded-0 m-0 bg-secondary">
                                        <a href="/service.html" class="dropdown-item text-white">Serviços</a>
                                        <a href="/about.html" class="dropdown-item text-white">informações</a> 
-                                       <a href="/blog.html" class="dropdown-item text-white">Blog</a>    
+                                       <a href="/blog.html" class="dropdown-item text-white">Blog</a>   
+                                       <a href="/video.html" class="dropdown-item text-white">Videos</a>  
                                    </div>
                                </div>
         
@@ -320,7 +322,7 @@ app.get("/nossoAdvogado/:id", async (req, res)=>{
             <div style="margin-top:150px; margin-bottom:150px" class="container"> 
                 <div class="row">
                     <div class="col-sm-12 col-lg-6 ">
-                        <img  class="img-fluid w-100 h-75" src="/img/${advogado.urlImagemPerfil}" style="border-radius:5px;">
+                        <img  class="img-fluid w-100 " src="/img/${advogado.urlImagemPerfil}" style="border-radius:5px;">
         
                     </div>
                     <div class="col-sm-12 col-lg-6 p-3">
