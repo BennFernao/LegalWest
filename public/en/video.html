@@ -228,7 +228,7 @@
   
 
        <!-- recent posts -->
-<div class="p-5" style="background-color: #f5f5f7;"> 
+        <div class="p-5" style="background-color: #f5f5f7;"> 
             <h3 class="mb-5 ml-3" >Published Videos </h3>
             <div class="container-fluid ">
 
@@ -371,6 +371,7 @@
         fetch("/api/video/lerVideos").then((res)=> res.json())
         .then((res)=>{
 
+            
             if(!(res[0] == "erro")){
 
                 alertaSobrePosts.innerHTML = ""

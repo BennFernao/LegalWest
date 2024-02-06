@@ -2,23 +2,23 @@
 const  { createClient } = require('redis') ;
 
 const client = createClient({
-    password: 'ZyoX59MmP1GfdWYVelPZ1jWEGRz8McaG',
+    password: 'WCfq3liIiJu1qYdtBa2pJW6ERSCAw6Vi',
     socket: {
-        host: 'redis-12292.c10.us-east-1-4.ec2.cloud.redislabs.com',
-        port: 12292
+        host: 'redis-14598.c322.us-east-1-2.ec2.cloud.redislabs.com',
+        port: 14598
     }
 });
 
 
 /*
 const client = createClient();
-
+*/
 
 async function connectToRedis(){
     await client.connect().then(()=> console.log("ligado ao redis"))
     client.on("error", (error)=> console.log(error))
 }
-*/
+
 
 connectToRedis()
 

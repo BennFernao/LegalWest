@@ -229,7 +229,7 @@
 
     <!-- Page Header Start -->
     <div > 
-        <div class="container-fluid bg-page-header" style="margin-bottom: 90px;">
+        <div class="container-fluid bg-page-header">
             <div class="container">
                 <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 400px">
                     <h3 class="display-3 text-white text-uppercase">Lawyers</h3>
@@ -251,8 +251,8 @@
     
     
         <div class="w-100 d-flex flex-column justify-content-center align-items-center p-5" style="background-color:#f5f5f7;">
-                <h1 class="text-secondary text-center m-5">Our Lawyers</h1>
-                <div class="d-flex advogados" style="height: auto; width: 100%; overflow-x: hidden; "   >
+                <h1 class="text-secondary text-center mb-5">Our Lawyers</h1>
+                <div class="d-flex advogados" style="height: auto; width: 100%; flex-wrap: wrap;   "   >
     
     
                 </div>
@@ -429,7 +429,7 @@
     
     
                 const descricaoDiv = document.createElement("div")
-                descricaoDiv.style.backgroundColor = "white"
+                descricaoDiv.style.backgroundColor = "#141e32"
                 descricaoDiv.setAttribute("class", "d-flex flex-column justify-content-between p-3")
     
                 const div1 = document.createElement("div")
@@ -440,7 +440,7 @@
     
                 const descricaoNome = document.createElement("h5")
                 descricaoNome.innerText = lawyer.nome 
-                descricaoNome.className = "text-secondary mt-2"
+                descricaoNome.className = "text-white mt-2"
     
                 const descricaoCargo = document.createElement("p")
                 descricaoCargo.innerText = lawyer.escritorio
@@ -455,7 +455,7 @@
                 descricaoVerMais.setAttribute("href", `/lawyers/nossoAdvogado/${lawyer.id}`)
     
                 const icon = document.createElement("p")
-                icon.innerText = "read about"
+                icon.innerText = "Read about"
                 icon.style.fontWeight ="900"
                 icon.setAttribute("class", "text-primary ")
                 icon.style.cursor = "pointer"
@@ -490,7 +490,8 @@
     
             }
     
-            fetch("/lawyers/showLawyers", {
+
+            fetch("/api/lawyers/showLawyers", {
                 method:"GET",
                 credentials:"include",
                 headers:{"content-type": "application/json"}
