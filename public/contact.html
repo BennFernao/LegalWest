@@ -250,37 +250,54 @@
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div >
 
-                        <div id="alerta">
+                        <!-- Depoimentos Start -->
 
-                        </div>
-                        
-                        <form  class="mt-5">
-                            <div class="form-row">
-                                <div class="col-sm-6 control-group">
-                                    <input type="text" class="form-control p-4 " id="name" placeholder="Seu nome"  />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="col-sm-6 control-group">
-                                    <input type="email" class="form-control p-4" id="email" placeholder="Seu email"  />
-                                    <p class="help-block text-danger"></p>
-                                </div>
+                            <div class="rounded p-5 my-5" style="background: rgba(31, 44, 68, 0.9);">
+                                                <h1 class="text-center text-white mb-4">Contacte-nos</h1>
+                                                
+                                                <div id="alertaParaContacto">
+
+                                                </div>
+                                                <form>
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control border-0 p-4" id="nomeParaContacto" placeholder="Seu Nome" required="required" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="email" class="form-control border-0 p-4" id="emailParaContacto" placeholder="Seu Email" required="required" />
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <div class="date" id="date" data-target-input="nearest">
+                                                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input" id="dataParaContacto" placeholder="Selecionar Data" data-target="#date" data-toggle="datetimepicker"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="form-group">
+                                                                <div class="time" id="time" data-target-input="nearest">
+                                                                    <input type="text" class="form-control border-0 p-4 datetimepicker-input" id="horaParaContacto" placeholder="Selecionar Hora" data-target="#time" data-toggle="datetimepicker"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select class="custom-select border-0 px-4" style="height: 47px;" id="servicoParaContacto">
+                                                            <option selected>Selecionar um Serviço</option>
+                                                            <option value="1">Serviço 1</option>
+                                                            <option value="2">Serviço 2</option>
+                                                            <option value="3">Serviço 3</option>
+                                                        </select>
+                                                    </div>
+
+                                                </form>
+
+                                                <div>
+                                                    <button class="btn btn-primary btn-block border-0 py-3" type="submit" id="botaoEnviarContacto">Agendar um Compromisso</button>
+                                                </div>
                             </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="subject" placeholder="Assunto"  />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <textarea class="form-control p-4" rows="6" id="message" placeholder="Mensagem"  ></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
 
-
-
-                        </form>
-
-                        <div>
-                            <button class="btn btn-primary btn-block" id="botaoEnviar">Enviar Mensagem</button>
-                        </div>
+                        <!-- Depoimentos End -->
 
 
 
@@ -405,9 +422,10 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="js/verificarUser.js"></script>
+    <script src="/js/verificarUser.js"></script>
     <script src="/js/utils.js"></script>
     <script src="/js/subscricoes/pt.js" ></script>
+    <script src="/js/contactar.js"></script>
 
 
 

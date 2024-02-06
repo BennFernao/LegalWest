@@ -173,7 +173,7 @@
                </div>
 
                
-               <a href="/marcarConsulta" class="btn btn-primary mr-5" >Shedule an appoitment</a>           
+               <a href="/enmarcarConsulta" class="btn btn-primary mr-5" >Shedule an appoitment</a>           
               
 
                <!--Div para tradução-->
@@ -252,42 +252,59 @@
             </div>
             <div class="row" >
                 <div class="col-lg-6 py-5" style="min-height: 400px;">
-                    <img src="/img/contacto.jpg" class="img-fluid w-100">
+                    <img src="/img/contacto.jpg" class="img-fluid w-100 h-100" style="object-fit: cover;">
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div >
 
-                        <div id="alerta">
+                        <!-- Depoimentos Start -->
 
-                        </div>
-                        
-                        <form  class="mt-5">
-                            <div class="form-row">
-                                <div class="col-sm-6 control-group">
-                                    <input type="text" class="form-control p-4 " id="name" placeholder="your name"  />
-                                    <p class="help-block text-danger"></p>
+                        <div class="rounded p-5 my-5" style="background: rgba(31, 44, 68, 0.9);">
+                            <h1 class="text-center text-white mb-4">Schedule an Appointment</h1>
+                            
+                            <div id="alertaParaContacto">
+
+                            </div>
+                            <form>
+                                <div class="form-group">
+                                    <input type="text" class="form-control border-0 p-4" id="nomeParaContacto" placeholder="Your Name" required="required" />
                                 </div>
-                                <div class="col-sm-6 control-group">
-                                    <input type="email" class="form-control p-4" id="email" placeholder="your email"  />
-                                    <p class="help-block text-danger"></p>
+                                <div class="form-group">
+                                    <input type="email" class="form-control border-0 p-4" id="emailParaContacto" placeholder="Your Email" required="required" />
                                 </div>
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="date" id="date" data-target-input="nearest">
+                                                <input type="text" class="form-control border-0 p-4 datetimepicker-input" id="dataParaContacto" placeholder="Select Date" data-target="#date" data-toggle="datetimepicker"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <div class="time" id="time" data-target-input="nearest">
+                                                <input type="text" class="form-control border-0 p-4 datetimepicker-input" id="horaParaContacto" placeholder="Select Time" data-target="#time" data-toggle="datetimepicker"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <select class="custom-select border-0 px-4" style="height: 47px;" id="servicoParaContacto">
+                                        <option selected>Select a Service</option>
+                                        <option value="1">Service 1</option>
+                                        <option value="2">Service 2</option>
+                                        <option value="3">Service 3</option>
+                                    </select>
+                                </div>
+
+                            </form>
+
+                            <div>
+                                <button class="btn btn-primary btn-block border-0 py-3" type="submit" id="botaoEnviarContacto">Schedule an Appointment</button>
                             </div>
-                            <div class="control-group">
-                                <input type="text" class="form-control p-4" id="subject" placeholder="Subject"  />
-                                <p class="help-block text-danger"></p>
-                            </div>
-                            <div class="control-group">
-                                <textarea class="form-control p-4" rows="6" id="message" placeholder="message"  ></textarea>
-                                <p class="help-block text-danger"></p>
-                            </div>
-
-
-
-                        </form>
-
-                        <div>
-                            <button class="btn btn-primary btn-block" id="botaoEnviar">Send message</button>
                         </div>
+
+                        <!-- Depoimentos End -->
 
 
 
@@ -410,6 +427,7 @@
     <script src="/js/verificarUser.js"></script>
     <script src="/js/subscricoes/en.js" ></script>
     <script src="/js/utils.js"></script>
+    <script src="/js/encontactar.js"></script>
 
 
 
